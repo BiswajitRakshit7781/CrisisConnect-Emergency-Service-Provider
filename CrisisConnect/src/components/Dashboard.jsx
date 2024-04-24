@@ -4,7 +4,7 @@ import './Dashboard.css'
 const Dashboard = () => {
   return (
     <>
-    <nav className="flex justify-between h-28 items-center pl-60 pr-36">
+    <nav className="flex justify-between h-28 items-center ">
         <div><h1 className="text-white logo">CrisisConnect</h1></div>
         <ul className="flex gap-10 items-center text-white">
           <li className='bg-blue-500 font-bold text-black'>Contact Us</li>
