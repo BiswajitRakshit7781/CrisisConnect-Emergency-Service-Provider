@@ -36,7 +36,7 @@ const Login = () => {
                         <li><NavLink className='no-underline' to='/signup'>Sign Up</NavLink></li>
                 </ul>
             </nav>
-            <main className='flex justify-center items-center'>
+            <main className='lgbg flex justify-center items-center'>
                 <div className="loginform flex flex-col items-center gap-12">
                     <h1>Login</h1>
                     {isSubmitting && <div>Loading....</div>}
