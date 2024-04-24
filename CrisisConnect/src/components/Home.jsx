@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import './Home.css'
+import { NavLink } from 'react-router-dom'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -17,14 +18,14 @@ const Home = () => {
           <li><a href="#AboutUs">About Us</a></li>
           <li><a href="#Services">Services</a></li>
           <li><a href="#contacts">Contacts</a></li>
-          <li><a href="#RegisterNow">Register Now</a></li>
+          <li><NavLink className='no-underline' to='/signup'>Sign Up</NavLink></li>
         </ul>
       </nav>
       <main>
         <div id='Home' className="home flex flex-col gap-2 justify-center items-center">
           <div className="welcoometag"><h3>Welcome to</h3></div>
           <div className="banner logo"><h1>CrisisConnect</h1></div>
-          <div className="tagline"><h3>"Instant Assistance, Endless Support</h3></div>
+          <div className="tagline"><h3>"Instant Assistance, Endless Support"</h3></div>
           <button className="login" onClick={login}>Log In</button>
         </div>
         <div className="Aboutus flex flex-col gap-16" id='AboutUs'>

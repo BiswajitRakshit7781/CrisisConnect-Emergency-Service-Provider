@@ -15,9 +15,11 @@ nav {
 main {
     width: 99vw;
     background: white;
-    height: 90vh;
+    height: 97vh;
 }
-
+a{
+    text-decoration: none;
+}
 .home {
     height: 70vh;
     /* border: 2px solid; */

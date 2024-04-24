@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.loginform{
+    padding-top: 4vh ;
+    border: 2px solid;
+    height: 50vh;
+    width:  25%;
+    border-radius: 25px;
+}
+form{
+    /* border: 2px solid; */
+    height: 70%;
+    width: 75%;
+}
+input[type=email], input[type=password]{
+    width: 80%;
+    height: 12%;
+    border: 1px solid;
+    border-radius: 10px;
+    padding-left: 5%;
+}
+input[type=submit] {
+    width: 35%;
+    height: 12%;
+    background-color: #0f0f0f;
+    color: white;
+    font-size: large;
+    border-radius: 10px;
+    cursor: pointer;
+}
+input[type=submit]:hover{
+    transition: all .4s ease-in-out;
+    transform: scale(1.05);
+}
