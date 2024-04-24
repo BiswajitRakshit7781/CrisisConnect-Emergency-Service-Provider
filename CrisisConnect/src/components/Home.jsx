@@ -45,19 +45,19 @@ const Home = () => {
           <h1 className='flex justify-center'>Our Services</h1>
           <div className="servicebox flex gap-20 justify-center">
             <div className="cards">
-              <img src="" alt="firesupport" />
-              <h2>Fire Support</h2>
+              <img src=".\src\assets\fire_home.jpeg" alt="firesupport" />
+              <h2>Fire Brigade Support</h2>
             </div>
             <div className="cards">
-              <img src="" alt="policesupport" />
+              <img src=".\src\assets\police_home.jpeg" alt="policesupport" />
               <h2>Police Support</h2>
             </div>
             <div className="cards">
-              <img src="" alt="hospitalsupport" />
+              <img src=".\src\assets\hospital_home.jpeg" alt="hospitalsupport" />
               <h2>Hospital Support</h2>
             </div>
             <div className="cards">
-              <img src="" alt="medicalsupport" />
+              <img src=".\src\assets\medicine_home.jpeg" alt="medicalsupport" />
               <h2>Medical Support</h2>
             </div>
           </div>

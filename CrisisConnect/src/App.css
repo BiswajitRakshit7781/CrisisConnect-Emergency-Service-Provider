@@ -1,0 +1,25 @@
+.home{
+    background-image: url(./assets/texture2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.Services{
+    background-image: url(./assets/texture7.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.Aboutus{
+    background-image: url(./assets/texture3.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.contacts{
+    background-image: url(./assets/texture4.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.lgbg{
+    background: url(./assets/texture5.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -27,7 +27,7 @@ const Login = () => {
     }
     return (
         <>
-            <nav className='flex justify-between items-center bg-white fixed'>
+            <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1>CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>

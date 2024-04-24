@@ -22,7 +22,7 @@ a{
 }
 .home {
     height: 70vh;
-    /* border: 2px solid; */
+    background-image: ".\src\assets\texture1.jpeg";
 }
 
 .Aboutus {
@@ -50,7 +50,7 @@ a{
 .cards {
     height: 250px;
     width: 270px;
-    border: 2px solid;
+    border: 0.5px solid;
     display: flex;
     flex-direction: column;
     gap: 8%;
@@ -64,16 +64,22 @@ a{
 }
 
 .cards>img {
+    border-radius: 10px;
     height: 70%;
     width: 100%;
     /* border: 2px solid; */
+    object-fit: cover;
     overflow: hidden;
 }
 
 .login{
     margin-top: 2%;
-    height: 40px;
-    width:  100px;
+    height: 50px;
+    font-size: 16px;
+    color: black;
+    width:  130px;
     border-radius: 7px;
     cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
 }
