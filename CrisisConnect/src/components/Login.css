@@ -14,12 +14,15 @@ form{
     height: 70%;
     width: 75%;
 }
-.lgform > [type=email],.lgform > input[type=password]{
+.lgform > input[type=email],.lgform > input[type=password]{
     width: 80%;
     height: 12%;
     border: 1px solid;
     border-radius: 10px;
     padding-left: 5%;
+}
+.lgform > input[type=email]::placeholder,.lgform > input[type=password]::placeholder{
+    color: #0f0f0f;
 }
 .lgform >input[type=submit] {
     width: 35%;

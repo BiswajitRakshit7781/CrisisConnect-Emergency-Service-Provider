@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
       <nav className='flex justify-between items-center bg-white fixed'>
-        <div className="logo"><h1>CrisisConnect</h1></div>
+        <div><h1 className="logo">CrisisConnect</h1></div>
         <ul className='flex space-x-4 list-none'>
           <li><a href="#Home">Home</a></li>
           <li><a href="#AboutUs">About Us</a></li>
@@ -24,7 +24,7 @@ const Home = () => {
       <main>
         <div id='Home' className="home flex flex-col gap-2 justify-center items-center">
           <div className="welcoometag"><h3>Welcome to</h3></div>
-          <div className="banner logo"><h1>CrisisConnect</h1></div>
+          <div className="banner logo"><h1 className="logo">CrisisConnect</h1></div>
           <div className="tagline"><h3>"Instant Assistance, Endless Support"</h3></div>
           <button className="login" onClick={login}>Log In</button>
         </div>

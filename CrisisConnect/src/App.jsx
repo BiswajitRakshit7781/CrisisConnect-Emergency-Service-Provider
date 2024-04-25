@@ -6,6 +6,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import Home from './components/Home'
 import Signup from  './components/Signup';
 import Adminlogin from './components/Adminlogin'
+import Dashexam  from "./components/Dashexam";
+import AdminDashboard from './components/AdminDashboard'
 
 function App() {
   const route = createBrowserRouter([
@@ -28,6 +30,14 @@ function App() {
     {
       path : "/admin",
       element : <Adminlogin/>
+    },
+    {
+      path : "/admindashboard",
+      element : <AdminDashboard/>
+    },
+    {
+      path : "/dashexam",
+      element : <Dashexam/>
     },
   ])
 

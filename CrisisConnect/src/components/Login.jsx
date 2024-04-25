@@ -28,7 +28,7 @@ const Login = () => {
     return (
         <>
             <nav className='flex justify-between items-center bg-transparent fixed'>
-                <div className="logo"><h1>CrisisConnect</h1></div>
+                <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>
                         <NavLink className='no-underline' to="/">Home</NavLink>
@@ -42,10 +42,9 @@ const Login = () => {
                     {isSubmitting && <div>Loading....</div>}
                     <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
 
-                        <input type="email" {...register("email", { required: { value: true, message: "This field is required" } })} placeholder="Enter Your Email Address" />
-                        {errors.email && <div className="text-red-950">{errors.email.message}</div>}
+                        <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
                         
-                        <input type="password" {...register("password", { required: { value: true, message: "This field is required" }, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
+                        <input type="password" {...register("password", { required: true, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
                         {errors.password && <div className="text-red-950">{errors.password.message}</div>}
                         
                         <NavLink className='no-underline' to='#'>Forgot Password ?</NavLink>
