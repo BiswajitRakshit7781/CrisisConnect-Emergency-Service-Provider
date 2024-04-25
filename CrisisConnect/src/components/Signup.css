@@ -1,0 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.signupform{
+    padding-top: 4vh ;
+    border: 2px solid;
+    height: 50vh;
+    width:  25%;
+    border-radius: 25px;
+}

@@ -14,14 +14,14 @@ form{
     height: 70%;
     width: 75%;
 }
-input[type=email], input[type=password]{
+.loginform > [type=email],.loginform > input[type=password]{
     width: 80%;
     height: 12%;
     border: 1px solid;
     border-radius: 10px;
     padding-left: 5%;
 }
-input[type=submit] {
+.loginform >input[type=submit] {
     width: 35%;
     height: 12%;
     background-color: #0f0f0f;
