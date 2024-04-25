@@ -26,7 +26,7 @@ const Signup = () => {
     }
     return (
         <>
-            <nav className='flex justify-between items-center bg-white fixed'>
+            <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1>CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>
@@ -38,10 +38,10 @@ const Signup = () => {
             <main className="sup flex justify-center items-center">
                 <div className="signupform flex flex-col items-center gap-12">
                     <h1>New Registration</h1>
+                    {isSubmitting && <div>Loading....</div>}
                     <form className="grid grid-cols-2 gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" {...register("name", { required: { value: true, message: "This field is required" } })} placeholder="Enter Your Fullname" />
-                        {/* {errors.name && <div className="text-red-950">{errors.name.message}</div>} */}
-                        {errors.name && {aler}}
+                        {errors.name && <div className="text-red-950">{errors.name.message}</div>}
 
                         <select {...register("sex", { required: { value: true, message: "This field is required" } })}>
                             <option value="">Select Your Sex</option>
