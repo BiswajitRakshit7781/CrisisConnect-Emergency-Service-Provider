@@ -40,7 +40,7 @@ const Login = () => {
                 <div className="loginform flex flex-col items-center gap-12">
                     <h1>Login</h1>
                     {isSubmitting && <div>Loading....</div>}
-                    <form className='flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
+                    <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
 
                         <input type="email" {...register("email", { required: { value: true, message: "This field is required" } })} placeholder="Enter Your Email Address" />
                         {errors.email && <div className="text-red-950">{errors.email.message}</div>}
