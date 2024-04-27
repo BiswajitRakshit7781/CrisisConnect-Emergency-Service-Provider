@@ -68,9 +68,6 @@ const Home = () => {
         </div>
         <Footer />
       </main>
-      {/* <div className='flex justify-center items-center text-6xl'>
-      <a href="/dashboard">Go to dashboard</a>
-     </div> */}
     </>
   )
 }

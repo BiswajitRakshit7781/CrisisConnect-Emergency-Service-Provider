@@ -4,6 +4,7 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import "./Signup.css"
+import axios from 'axios';
 
 const Signup = () => {
     const {
@@ -20,10 +21,20 @@ const Signup = () => {
             }, d * 1000);
         })
     }
-    const onSubmit = async (data) => {
-        await delay(2)
-        console.log(data)
-    }
+    // const onSubmit = async (data) => {
+    //     await delay(2)
+    //     console.log(data)
+    // }
+
+const onSubmit = async (data) => {
+  try {
+    const response = await axios.post('/api/signup', data);
+    console.log(response.data);
+  } catch (error) {
+    console.error('Error occurred while submitting form:', error);
+  }
+};
+
     return (
         <>
             <nav className='flex justify-between items-center bg-transparent fixed'>
