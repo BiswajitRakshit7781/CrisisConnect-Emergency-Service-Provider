@@ -10,7 +10,7 @@ const Signup = () => {
     const {
         register,
         handleSubmit,
-        watch,
+        setError,
         formState: { errors, isSubmitting },
     } = useForm()
 
