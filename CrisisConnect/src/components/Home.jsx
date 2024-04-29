@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect,useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import './Home.css'
@@ -9,6 +10,36 @@ const Home = () => {
   const login = () => {
     navigate("/login");
   };
+  const service=useRef()
+  useEffect(()=>{
+    let ry=0
+    let x=setInterval(()=>{
+      service.current.style.transform=`rotate3d(0, 1, 0, ${ry}turn)`
+      ry-=0.001
+      if(ry<=-0.25){
+        clearInterval(x)
+      service.current.style.transform=`rotate3d(0, 1, 0, ${0}turn)`
+      }
+    },10)
+  },[])
+  const handel_turn=(event)=>{
+    // console.log(event.clientX)
+    if(event.clientX>100 && event.clientX<=348){
+      service.current.style.transform=`rotate3d(0, 1, 0, ${0.1}turn)`
+    }
+    else if(event.clientX>348 && event.clientX<=700){
+      service.current.style.transform=`rotate3d(0, 1, 0, ${0.1}turn)`
+    }
+    else if(event.clientX>700 && event.clientX<=1000){
+      service.current.style.transform=`rotate3d(0, 1, 0, ${-0.1}turn)`
+    }
+    else if(event.clientX>1000 && event.clientX<=1170){
+      service.current.style.transform=`rotate3d(0, 1, 0, ${-0.1}turn)`
+    }
+  }
+  const neutral_turn=()=>{
+    service.current.style.transform=`rotate3d(0, 1, 0, ${0}turn)`
+  }
   return (
     <>
       <nav className='flex justify-between items-center bg-white fixed'>
@@ -41,7 +72,7 @@ const Home = () => {
             <br/><br/>
             Welcome to CrisisConnect – where help is just a click away.</p>
         </div>
-        <div className="Services flex flex-col gap-36" id='Services'>
+        <div className="Services flex flex-col gap-36" id='Services' ref={service} onMouseMove={handel_turn} onMouseLeave={neutral_turn}>
           <h1 className='flex justify-center'>Our Services</h1>
           <div className="servicebox flex gap-20 justify-center">
             <div className="cards">
