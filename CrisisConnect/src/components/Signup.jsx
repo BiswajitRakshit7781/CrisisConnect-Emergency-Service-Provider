@@ -43,27 +43,24 @@ const onSubmit = async (data) => {
                     <h1>New Registration</h1>
                     {isSubmitting && <div>Loading....</div>}
 
-                    {/* {errors.height && <div className="text-red-950">{errors.height.message}</div>} */}
-                    {/* {errors.weight && <div className="text-red-950">{errors.weight.message}</div>} */}
-                    {/* {errors.phone && <div className="text-red-950">{errors.phone.message}</div>} */}
-                    {/* {errors.aadhar && <div className="text-red-950">{errors.aadhar.message}</div>} */}
-                    {/* {errors.password && <div className="text-red-950">{errors.password.message}</div>} */}
-                    {/* {errors.confirmpassword && <div className="text-red-950">{errors.confirmpassword.message}</div>} */}
-                    
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" {...register("name", { required: true })} placeholder="Enter Your Fullname" />
+                        {errors.name && alert('Enter your name')}
                         
 
                         <select {...register("sex", { required: true })}>
                             <option value="">Select Your Sex</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
-                            {/* <option value="others">Others</option> */}
+                            <option value="others">Others</option>
                         </select>
+                        {errors.sex && alert('Select your sex')}
 
-                        <input type="number" {...register("height", { required: true, maxLength: { value: 3, message: "Enter a valid height" } })} placeholder="Enter Your Height In CM" />
+                        <input type="number" {...register("height", { required: true, maxLength: 3 })} placeholder="Enter Your Height In CM" />
+                        {errors.height && alert('Enter a valid height')}
 
-                        <input type="number" {...register("weight", { required: true, maxLength: { value: 3, message: "Enter a valid weight" }})} placeholder="Enter Your Weight In KG" />
+                        <input type="number" {...register("weight", { required: true, maxLength: 3})} placeholder="Enter Your Weight In KG" />
+                        {errors.weight && alert('Enter a valid weight')}
 
 
                         <select {...register("bloodgroup", { required: true })}>
@@ -77,22 +74,30 @@ const onSubmit = async (data) => {
                             <option value="AB+">AB+</option>
                             <option value="AB-">AB-</option>O+
                         </select>
+                        {errors.bloodgroup && alert('Please select your blood group')}
                         
                         <input type="date" {...register("dob", { required: true })} placeholder="Enter Your Date Of Birth" />
+                        {errors.dob && alert('Date of Birth is Required!')}
 
                         <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
+                        {errors.email && alert('Enter a valid email id')}
 
-                        <input type="number" {...register("phone", { required: true ,maxLength: { value: 10, message: "Enter a valid Phone number" } })} placeholder="Enter Your Phone Number" />
+                        <input type="number" {...register("phone", { required: true, minLength:10 ,maxLength: 10 })} placeholder="Enter Your Phone Number" />
+                        {errors.phone && alert('Enter a valid 10 digit mobile number')}
 
 
-                        <input type="number" {...register("aadhar", { required: true,maxLength: { value: 12, message: "Enter a valid Aadhar Number" } })} placeholder="Enter Your Aadhar Card Number" />
+                        <input type="number" {...register("aadhar", { required: true,minLength:12, maxLength:12 })} placeholder="Enter Your Aadhar Card Number" />
+                        {errors.aadhar && alert('Enter a valid 12 digit aadhar number')}
 
                         <input type="text" {...register("address", { required: true})} placeholder="Enter Your Home Address" />
+                        {errors.address && alert('Address in required')}
 
-                        <input type="password" {...register("password", { required: true, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Maximum 8 Character required" } })} placeholder="Enter Password" />
+                        <input type="password" {...register("password", { required: {value : true , message : 'Password is required'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Maximum 8 Character required" } })} placeholder="Enter Password" />
+                        {errors.password && alert(errors.password.message)}
                         
 
-                        <input type="password" {...register("confirmpassword", { required: true, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
+                        <input type="password" {...register("confirmpassword", { required: {value : true , message : 'Password is required'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
+                        {errors.confirmpassword && alert(errors.confirmpassword.message)}
                         
 
                         <input className="col-start-2" disabled={isSubmitting} type="submit" value='Register' />
