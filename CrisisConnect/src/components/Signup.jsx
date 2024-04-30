@@ -96,7 +96,7 @@ const onSubmit = async (data) => {
                         {errors.password && alert(errors.password.message)}
                         
 
-                        <input type="password" {...register("confirmpassword", { required: {value : true , message : 'Password is required'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
+                        <input type="password" {...register("confirmpassword", { required: {value : true , message : 'Re-enter password'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
                         {errors.confirmpassword && alert(errors.confirmpassword.message)}
                         
 
