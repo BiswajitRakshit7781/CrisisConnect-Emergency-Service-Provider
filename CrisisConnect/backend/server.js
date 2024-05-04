@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 import registered_users from './model/Schema_RegisteredUsers.js';
 import transporter from './model/mail.js';
 import mailOptions from './model/mailOptions.js';
+import { useNavigate } from 'react-router-dom';
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors())
@@ -42,6 +43,21 @@ app.post('/createAccount', async (req, res) => {
   console.log(`${u_fullname} have been created`)
   res.send(`${u_fullname} have been created`)
 });
+app.post("/login",async (req,res)=>{
+  let log_email=req.body.email
+  let log_pass=req.body.password
+  let db_email= await registered_users.findOne({email:log_email})
+  let log_stat={email:false,password:false}
+  if(db_email!==null){
+    log_stat.email=true
+  if(db_email.password === log_pass){
+    log_stat.password=true
+  }
+  else
+    log_stat.password=false
+  }
+  res.send(log_stat)
+})
 
 
 app.listen(PORT, () => {

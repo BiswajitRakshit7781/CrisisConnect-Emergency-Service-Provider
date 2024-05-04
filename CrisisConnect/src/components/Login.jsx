@@ -4,13 +4,15 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import "./Login.css"
+import { useRef } from 'react'
 
 const Login = () => {
-
+    const login=useRef(false)
+    const navigate=useNavigate()
     const {
         register,
         handleSubmit,
-        watch,
+        setError,
         formState: { errors, isSubmitting },
     } = useForm()
 
@@ -22,11 +24,25 @@ const Login = () => {
         })
     }
     const onSubmit = async (data) => {
-        await delay(2)
-        console.log(data)
+        let res= await fetch("http://localhost:5000/login",{method:"POST",headers: {
+            'Content-Type': 'application/json'},body:JSON.stringify(data)})
+        let r=await res.json()
+        if(r.email==true){
+            if(r.password==true){
+                alert("login sucsesfull")
+                login.current=true
+            }
+            else
+            alert("invalid password") 
+        }
+        else
+        alert("invalid email")
     }
     return (
         <>
+        {
+            login.current && navigate('/Dashboard')
+        }
             <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>

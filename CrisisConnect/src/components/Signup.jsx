@@ -4,8 +4,11 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import "./Signup.css"
+import { useRef } from 'react'
 
 const Signup = () => {
+    const navigate=useNavigate()
+    const signin=useRef(false)
     const {
         register,
         handleSubmit,
@@ -25,10 +28,12 @@ const onSubmit = async (data) => {
     let r=await fetch("http://localhost:5000/createAccount",{method:"POST",headers: {
         'Content-Type': 'application/json'
     },body:JSON.stringify(data)})
+    signin.current=true
 };
 
     return (
         <>
+        {signin.current && (navigate("/Login"))}
             <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
