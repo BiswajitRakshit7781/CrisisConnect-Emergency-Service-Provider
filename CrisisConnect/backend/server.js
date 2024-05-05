@@ -17,6 +17,8 @@ const client=mongoose.connect('mongodb://0.0.0.0:27017/CrisisConnect').then((val
 app.get('/',(req,res)=>{
 res.send("hello world!!")
 })
+const log_stat={email:false,password:false,name:null}
+
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
   let u_sex=req.body.sex
@@ -47,15 +49,18 @@ app.post("/login",async (req,res)=>{
   let log_email=req.body.email
   let log_pass=req.body.password
   let db_email= await registered_users.findOne({email:log_email})
-  let log_stat={email:false,password:false}
   if(db_email!==null){
     log_stat.email=true
   if(db_email.password === log_pass){
     log_stat.password=true
+    log_stat.name=db_email.fullname
   }
   else
     log_stat.password=false
   }
+  res.send(log_stat)
+})
+app.get('/dashboard',(req,res)=>{
   res.send(log_stat)
 })
 
