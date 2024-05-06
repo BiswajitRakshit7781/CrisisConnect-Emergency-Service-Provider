@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import './Dashboard.css'
 import Footer from './Footer'
 import { useState,useEffect } from 'react'
@@ -17,6 +18,7 @@ useEffect(()=>{
     setName(log_stat.name)
     }
     }
+    const navigate = useNavigate();
 
   return (
     
@@ -32,19 +34,19 @@ useEffect(()=>{
           <h1>Welcome {name}</h1>
         </div>
         <div className="dashboard flex gap-20 justify-center mt-28">
-          <div className="card fireSupport">
+          <div onClick={() => navigate("/fire")} className="card fireSupport cursor-pointer">
             <img className="poster" src=".\src\assets\fire_home.jpeg" alt="FireSupport" />
             <h2 className="title">Fire Brigade Support</h2>
           </div>
-          <div className="card policeSupport">
+          <div onClick={() => navigate("/police")} className="card policeSupport cursor-pointer">
             <img className="poster" src=".\src\assets\police_home.jpeg" alt="PoliceSupport" />
             <h2 className="title">Police Support</h2>
           </div>
-          <div className="card hospitalSupport">
+          <div onClick={() => navigate("/hospital")} className="card hospitalSupport cursor-pointer">
             <img className="poster" src=".\src\assets\hospital_home.jpeg" />
             <h2 className="title">Hospital Support</h2>
           </div>
-          <div className="card medicineSupport">
+          <div onClick={() => navigate("/medicine")} className="card medicineSupport cursor-pointer">
             <img className="poster" src=".\src\assets\medicine_home.jpeg" alt="MedicineSupport" />
             <h2 className="title">Medicine Support</h2>
           </div>
