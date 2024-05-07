@@ -28,12 +28,14 @@ const onSubmit = async (data) => {
     let r=await fetch("http://localhost:5000/createAccount",{method:"POST",headers: {
         'Content-Type': 'application/json'
     },body:JSON.stringify(data)})
+    let res=await r.text()
+    console.log(res)
     signin.current=true
 };
 
     return (
         <>
-        {signin.current && (navigate("/Login"))}
+        {/* {signin.current && (navigate("/Login"))} */}
             <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
@@ -108,6 +110,7 @@ const onSubmit = async (data) => {
                         <input className="col-start-2" disabled={isSubmitting} type="submit" value='Register' />
 
                     </form>
+                    
                 </div>
             </main>
             <Footer />

@@ -13,4 +13,5 @@ let new_user=mongoose.Schema({
     password:String
 })
 const registered_users=mongoose.model("RegisteredUsers",new_user)
+registered_users.collection.createIndex({email:1},{unique:true})
 export default registered_users

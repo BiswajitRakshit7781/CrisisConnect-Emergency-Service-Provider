@@ -31,19 +31,25 @@ app.post('/createAccount', async (req, res) => {
   let u_adharno=req.body.aadhar
   let u_homeaddress=req.body.address
   let u_password=req.body.password
-  let new_user=await new registered_users({fullname:u_fullname,sex:u_sex,height:u_height,weight:u_weight,bloodgroup:u_bloodgroup,dob:u_dob,email:u_email,phoneno:u_phoneno,adharno:u_adharno,homeaddress:u_homeaddress,password:u_password})
+  let new_user
+  try{
+  new_user=await new registered_users({fullname:u_fullname,sex:u_sex,height:u_height,weight:u_weight,bloodgroup:u_bloodgroup,dob:u_dob,email:u_email,phoneno:u_phoneno,adharno:u_adharno,homeaddress:u_homeaddress,password:u_password})
   await new_user.save()
+  }
+  catch(error){
+    res.send("email must be unique")
+  }
+  if(new_user){
   mailOptions['to']=u_email
   transporter.sendMail(mailOptions,(error,info)=>{
     if(error){
-
-      console.log("error")
+      res.send("error")
     }
     else
     console.log("sent successfully")
   })
   console.log(`${u_fullname} have been created`)
-  res.send(`${u_fullname} have been created`)
+}
 });
 app.post("/login",async (req,res)=>{
   let log_email=req.body.email
