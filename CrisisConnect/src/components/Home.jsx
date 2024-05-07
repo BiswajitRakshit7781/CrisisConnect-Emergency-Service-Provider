@@ -72,9 +72,9 @@ const Home = () => {
             <br/><br/>
             Welcome to CrisisConnect – where help is just a click away.</p>
         </div>
-        <div className="Services flex flex-col gap-36" id='Services' ref={service} onMouseMove={handel_turn} onMouseLeave={neutral_turn}>
+        <div className="Services flex flex-col gap-36" id='Services'>
           <h1 className='flex justify-center'>Our Services</h1>
-          <div className="servicebox flex gap-20 justify-center">
+          <div ref={service} onMouseMove={handel_turn} onMouseLeave={neutral_turn} className="servicebox flex gap-20 justify-center">
             <div className="cards">
               <img src=".\src\assets\fire_home.jpeg" alt="firesupport" />
               <h2>Fire Brigade Support</h2>

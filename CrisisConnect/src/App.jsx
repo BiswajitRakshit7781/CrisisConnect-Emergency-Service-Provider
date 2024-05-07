@@ -11,6 +11,10 @@ import PoliceDash from './components/PoliceDash';
 import HospitalDash from './components/HospitalDash';
 import MedicineDash from './components/MedicineDash';
 import FireDash from './components/FireDash';
+import FireAdmin from './components/FireAdmin';
+import PoliceAdmin from './components/PoliceAdmin';
+import HospitalAdmin from './components/HospitalAdmin';
+import MedicineAdmin from './components/MedicineAdmin';
 
 function App() {
   return (
@@ -27,6 +31,10 @@ function App() {
         <Route path="/hospital" element={<HospitalDash />} />
         <Route path="/medicine" element={<MedicineDash />} />
         <Route path="/fire" element={<FireDash />} />
+        <Route path="/fireadmin" element={<FireAdmin />} />
+        <Route path="/policeadmin" element={<PoliceAdmin />} />
+        <Route path="/hospitaladmin" element={<HospitalAdmin />} />
+        <Route path="/medicineadmin" element={<MedicineAdmin />} />
       </Routes>
     </Router>
   );
