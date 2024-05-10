@@ -23,13 +23,28 @@ const Signup = () => {
             }, d * 1000);
         })
     }
+    function contains_upper(str){
+        for(let i=0;i<str.length;i++){
+            if(str[i]>='A' && str[i]<='Z'){
+                return true
+            }
+        }
+        return false
+    }
+    const check_strong_pass=(password)=>{
+        let val=contains_upper(password)
+        console.log(val)
+    }
 const onSubmit = async (data) => {
     await delay(2)
+    check_strong_pass(data.password)
     let r=await fetch("http://localhost:5000/createAccount",{method:"POST",headers: {
         'Content-Type': 'application/json'
     },body:JSON.stringify(data)})
-    let res=await r.text()
-    console.log(res)
+    let res=await r.json()
+    if(res.email_unique==false){
+        setError("inv_email",{message:"E-mail is already registered"})
+    }
     signin.current=true
 };
 
@@ -110,7 +125,7 @@ const onSubmit = async (data) => {
                         <input className="col-start-2" disabled={isSubmitting} type="submit" value='Register' />
 
                     </form>
-                    
+                    {errors.inv_email && <div className='error-red'>{errors.inv_email.message}</div>}
                 </div>
             </main>
             <Footer />

@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import './Dashboard.css'
 import Footer from './Footer'
 import { useState,useEffect } from 'react'
+import Logout_page from './Logout_page'
+import './logout.css'
 
 const Dashboard = () => {
   const [nameFound,setNamefound]=useState(false)
@@ -18,16 +20,20 @@ useEffect(()=>{
     setName(log_stat.name)
     }
     }
-    const navigate = useNavigate();
-
+  const navigate = useNavigate();
+   const set_logout=()=>{
+    let log_out=document.getElementById("logout-page")
+    let sheet=document.getElementsByClassName("sheet")[0]
+    log_out.style.display="flex"
+    sheet.style.display="block"
+   }
   return (
     
     <>
-    {
-      nameFound ?(<>
+    {!nameFound && navigate("/login")}
       <nav className="flex justify-between items-center bg-transparent fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
-        <button  className='login'>Log Out</button>
+        <button  className='login' onClick={set_logout}>Log Out</button>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
@@ -52,11 +58,10 @@ useEffect(()=>{
           </div>
         </div>
       </main>
+      <Logout_page />
+      <div className="sheet"></div>
       <Footer />
-      </>):(<><div className="welcome flex justify-center pt-32">
-          <h1>Please Login correctly</h1>
-        </div></>)
-    }
+
     </>
   )
 }

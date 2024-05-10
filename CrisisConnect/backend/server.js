@@ -18,7 +18,11 @@ app.get('/',(req,res)=>{
 res.send("hello world!!")
 })
 const log_stat={email:false,password:false,name:null}
-
+const set_logout=(obj)=>{
+  obj.email=false
+  obj.password=false
+  obj.name=null
+}
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
   let u_sex=req.body.sex
@@ -32,14 +36,19 @@ app.post('/createAccount', async (req, res) => {
   let u_homeaddress=req.body.address
   let u_password=req.body.password
   let new_user
+  let sign_in_stat={email:false,email_unique:false,password:false}
+  let existed_user= await registered_users.findOne({email:u_email})
   try{
   new_user=await new registered_users({fullname:u_fullname,sex:u_sex,height:u_height,weight:u_weight,bloodgroup:u_bloodgroup,dob:u_dob,email:u_email,phoneno:u_phoneno,adharno:u_adharno,homeaddress:u_homeaddress,password:u_password})
   await new_user.save()
+  sign_in_stat.email=true
+  sign_in_stat.email_unique=true
+  sign_in_stat.password=true
   }
   catch(error){
-    res.send("email must be unique")
+    res.send(sign_in_stat)
   }
-  if(new_user){
+  if(existed_user==null){
   mailOptions['to']=u_email
   transporter.sendMail(mailOptions,(error,info)=>{
     if(error){
@@ -49,9 +58,11 @@ app.post('/createAccount', async (req, res) => {
     console.log("sent successfully")
   })
   console.log(`${u_fullname} have been created`)
+  res.send(sign_in_stat)
 }
 });
 app.post("/login",async (req,res)=>{
+  set_logout(log_stat)
   let log_email=req.body.email
   let log_pass=req.body.password
   let db_email= await registered_users.findOne({email:log_email})
@@ -69,7 +80,10 @@ app.post("/login",async (req,res)=>{
 app.get('/dashboard',(req,res)=>{
   res.send(log_stat)
 })
-
+app.get('/logout',(req,res)=>{
+  set_logout(log_stat)
+  res.send(log_stat)
+})
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

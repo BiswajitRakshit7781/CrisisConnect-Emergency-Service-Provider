@@ -24,6 +24,7 @@ const Login = () => {
         })
     }
     const onSubmit = async (data) => {
+        await delay(2)
         let res= await fetch("http://localhost:5000/login",{method:"POST",headers: {
             'Content-Type': 'application/json'},body:JSON.stringify(data)})
         let r=await res.json()
@@ -33,10 +34,10 @@ const Login = () => {
                 login.current=true
             }
             else
-            alert("invalid password") 
+            setError("inv_password",{message:"invalid password"})
         }
         else
-        alert("invalid email")
+        setError("inv_email",{message:"Looks like email not registered"})
     }
     return (
         <>
@@ -59,10 +60,10 @@ const Login = () => {
                     <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
 
                         <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
-                        
+                        {errors.inv_email && <div className="error-red">{errors.inv_email.message}</div>}
                         <input type="password" {...register("password", { required: true, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
                         {errors.password && <div className="text-red-950">{errors.password.message}</div>}
-                        
+                        {errors.inv_password && <div className="error-red">{errors.inv_password.message}</div>}
                         <NavLink className='no-underline' to='#'>Forgot Password ?</NavLink>
                         
                         <input disabled={isSubmitting} type="submit" value='Log In' />

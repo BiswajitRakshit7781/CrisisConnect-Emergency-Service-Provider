@@ -1,0 +1,59 @@
+#logout-page{
+    height: 40vh;
+    width: 40vw;
+    background-color: white;
+    border-radius: 10%;
+    position: absolute;
+    z-index: 3;
+    bottom: 30vh;
+    left: 30vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: 0.3s ease-in-out;
+    box-shadow: 10px 10px  30px blue;
+}
+:root{
+    z-index: 1;
+}
+.question{
+    display: flex;
+    width: 80%;
+    height: 30%;
+    font-size: 2em;
+    align-items: flex-end;
+    justify-content: center;
+}
+.buttons{
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    height: 30%;
+}
+.buttons button{
+    width: 30%;
+    height: 100%;
+    border-radius: 10%;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.yes:hover{
+    background:linear-gradient(150deg,red,white);
+    color: white;
+}
+.no:hover{
+    background:linear-gradient(150deg,green,white);
+    color: white;
+}
+.sheet{
+    display: none;
+    background-color:white;
+    position: absolute;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
