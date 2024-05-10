@@ -26,3 +26,33 @@
 .sgform > input[type=text]::placeholder , .sgform > input[type=number]::placeholder ,.sgform > input[type=email]::placeholder, .sgform > input[type=password]::placeholder {
     color: #0f0f0f;
 }
+.alert{
+    position: absolute;
+    top: 30%;
+}
+.alert > div{
+    width: 30%;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    background-color: rgb(207, 103, 103);
+    color: #fff;
+    font-weight: 700;
+    padding: 0 30px;
+}
+.closebtn{
+    background: transparent;
+    font-size: large;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+.closebtn:hover{
+    color: rgb(0, 0, 0);
+    transition:  all .4s ease-in-out;
+    transform: scale(1.20);
+}
