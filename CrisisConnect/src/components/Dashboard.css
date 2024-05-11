@@ -31,9 +31,9 @@ main{
     width:  130px;
     border-radius: 7px;
     cursor: pointer;
-    background-color: rgb(95, 25, 173);
-    border: 1px solid rgb(74, 212, 20);
-    box-shadow: 5px 5px 5px rgb(40, 180, 12);
+    background-color: rgb(255, 27, 27);
+    border: 1px solid rgb(237, 241, 235);
+    box-shadow: 5px 3px 3px rgb(234, 239, 239);
 }
 .retdash{
   text-transform: uppercase;

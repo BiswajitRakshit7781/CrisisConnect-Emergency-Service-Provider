@@ -18,11 +18,11 @@ const Logout_page = (props) => {
   return (
     <div id='logout-page'>
     <span className='question'>
-        You sure want to log out ?
+        Are you sure want to log out ?
     </span>
     <div className="buttons">
-        <button className='yes' onClick={logout}>Yes</button>
-        <button className='no' onClick={hide_logout}>No</button>
+        <button className='yes' onClick={logout}>OK</button>
+        <button className='no' onClick={hide_logout}>Cancel</button>
     </div>
     </div>
   )
