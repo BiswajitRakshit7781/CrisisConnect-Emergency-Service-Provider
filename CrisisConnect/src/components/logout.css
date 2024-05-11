@@ -2,7 +2,7 @@
     height: 40vh;
     width: 40vw;
     background-color: white;
-    border-radius: 10%;
+    border-radius: 5%;
     position: absolute;
     z-index: 3;
     bottom: 30vh;
@@ -18,12 +18,14 @@
     z-index: 1;
 }
 .question{
+    color: blue;
     display: flex;
     width: 80%;
     height: 30%;
     font-size: 2em;
     align-items: flex-end;
     justify-content: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .buttons{
     width: 60%;
@@ -37,6 +39,7 @@
     border-radius: 10%;
     font-size: 1.2em;
     cursor: pointer;
+    border: none;
 }
 .yes:hover{
     background:linear-gradient(150deg,red,white);

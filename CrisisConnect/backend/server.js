@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import registered_users from './model/Schema_RegisteredUsers.js';
 import transporter from './model/mail.js';
 import mailOptions from './model/mailOptions.js';
-import { useNavigate } from 'react-router-dom';
+import admin from './model/admin_schema.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors())
@@ -18,10 +18,16 @@ app.get('/',(req,res)=>{
 res.send("hello world!!")
 })
 const log_stat={email:false,password:false,name:null}
+const admin_log_stat={email:false,password:false}
+
 const set_logout=(obj)=>{
   obj.email=false
   obj.password=false
   obj.name=null
+}
+const set_logout_adm=(obj)=>{
+  obj.email=false
+  obj.password=false
 }
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
@@ -84,7 +90,25 @@ app.get('/logout',(req,res)=>{
   set_logout(log_stat)
   res.send(log_stat)
 })
-
+app.post("/admin-login",async (req,res)=>{
+  set_logout_adm(admin_log_stat)
+  let a_email=req.body.email
+  let a_password=req.body.password
+  let admin_val=await admin.findOne({})
+  if(admin_val!==null){
+  if(a_email===admin_val.email){
+    admin_log_stat.email=true
+    if(a_password===admin_val.password){
+      admin_log_stat.password=true
+    }
+  }
+}
+  res.send(admin_log_stat)
+})
+app.get("/admin-logout",(req,res)=>{
+  set_logout_adm(admin_log_stat)
+  res.send(log_stat)
+})
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

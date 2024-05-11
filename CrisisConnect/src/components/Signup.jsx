@@ -50,7 +50,7 @@ const onSubmit = async (data) => {
 
     return (
         <>
-        {/* {signin.current && (navigate("/Login"))} */}
+        {signin.current && (navigate("/Login"))}
             <nav className='flex justify-between items-center bg-transparent fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>

@@ -1,18 +1,17 @@
 import React from 'react'
-import { useEffect,useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-const Logout_page = (props) => {
-  const navigate=useNavigate()
+const Adminlogout = () => {
+    const navigate=useNavigate()
   const hide_logout=()=>{
     let logout=document.getElementById("logout-page")
     logout.style.display="none"
     logout.nextElementSibling.style.display="none"
   }
   const logout=async ()=>{
-    let res=await fetch("http://localhost:5000/logout")
+    let res=await fetch("http://localhost:5000/admin-logout")
     let log_stat=await res.json()
-    if(!log_stat.name){
-      navigate("/")
+    if(!log_stat.email && !log_stat.password){
+      navigate("/admin")
     }
    }
   return (
@@ -28,4 +27,4 @@ const Logout_page = (props) => {
   )
 }
 
-export default Logout_page
+export default Adminlogout
