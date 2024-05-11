@@ -22,3 +22,29 @@ main{
   transition:  all .4s ease-in-out;
   transform: scale(1.20);
 }
+.logout{
+  text-transform: uppercase;
+    height: 50px;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 800;
+    width:  130px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: rgb(95, 25, 173);
+    border: 1px solid rgb(74, 212, 20);
+    box-shadow: 5px 5px 5px rgb(40, 180, 12);
+}
+.retdash{
+  text-transform: uppercase;
+    height: 50px;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 800;
+    width:  150px;
+    border-radius: 7px;
+    cursor: pointer;
+    background-color: rgb(95, 25, 173);
+    border: 1px solid rgb(74, 212, 20);
+    box-shadow: 5px 5px 5px rgb(40, 180, 12);
+}

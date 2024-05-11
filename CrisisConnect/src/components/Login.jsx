@@ -34,7 +34,7 @@ const Login = () => {
         let r = await res.json()
         if (r.email == true) {
             if (r.password == true) {
-                alert("login sucsesfull")
+                console.log("login sucsesfull")
                 login.current = true
             }
             else
@@ -55,7 +55,7 @@ const Login = () => {
             {
                 login.current && navigate('/Dashboard')
             }
-            <nav className='flex justify-between items-center bg-transparent fixed'>
+            <nav className='flex justify-between items-center fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>

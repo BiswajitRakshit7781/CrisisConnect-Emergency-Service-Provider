@@ -57,15 +57,14 @@ const Signup = () => {
         setIsVisible(false);
     };
 
-    const validatePassword = (value) => {
-        const { password } = data; // Access the original password from the form data
+    const validatePassword = (value, { password }) => {
         return value === password || "Passwords do not match";
       };
       
     return (
         <>
             {signin.current && (navigate("/Login"))}
-            <nav className='flex justify-between items-center bg-transparent fixed'>
+            <nav className='flex justify-between items-center fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>
@@ -159,7 +158,7 @@ const Signup = () => {
 
 
                 <div className="signupform flex flex-col items-center gap-12">
-                    <h1>New Registration</h1>
+                    <h1 className='text-white'>New Registration</h1>
                     {isSubmitting && <div className='loading'></div>}
 
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>

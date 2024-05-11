@@ -42,7 +42,7 @@ const Home = () => {
   }
   return (
     <>
-      <nav className='flex justify-between items-center bg-white fixed'>
+      <nav className='flex justify-between items-center fixed'>
         <div><h1 className="logo">CrisisConnect</h1></div>
         <ul className='flex space-x-4 list-none'>
           <li><a href="#Home">Home</a></li>
@@ -52,14 +52,14 @@ const Home = () => {
           <li><NavLink className='no-underline' to='/signup'>Sign Up</NavLink></li>
         </ul>
       </nav>
-      <main>
+      <main className='homemain'>
         <div id='Home' className="home flex flex-col gap-2 justify-center items-center">
           <div className="welcoometag"><h3>Welcome to</h3></div>
           <div className="banner logo"><h1 className="logo">CrisisConnect</h1></div>
           <div className="tagline"><h3>"Instant Assistance, Endless Support"</h3></div>
           <button className="login" onClick={login}>Log In</button>
         </div>
-        <div className="Aboutus flex flex-col gap-16" id='AboutUs'>
+        <div className="Aboutus flex flex-col gap-40" id='AboutUs'>
           <h1 className='flex justify-center'>About Us</h1>
           <p>Welcome to CrisisConnect, your trusted companion in times of emergency.<br/><br/>
             At CrisisConnect, we understand that during critical moments, having access to reliable assistance can make all the difference. Our platform is dedicated to providing a seamless connection between individuals in crisis and the essential services they need.
@@ -72,7 +72,7 @@ const Home = () => {
             <br/><br/>
             Welcome to CrisisConnect – where help is just a click away.</p>
         </div>
-        <div className="Services flex flex-col gap-36" id='Services'>
+        <div className="Services flex flex-col gap-60" id='Services'>
           <h1 className='flex justify-center'>Our Services</h1>
           <div ref={service} onMouseMove={handel_turn} onMouseLeave={neutral_turn} className="servicebox flex gap-20 justify-center">
             <div className="cards">
@@ -93,9 +93,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="contacts flex flex-col gap-28 items-center" id='contacts'>
+        <div className="contacts flex flex-col gap-10 items-center" id='contacts'>
           <h1 className='flex justify-center'>Contacts</h1>
-          <h3>Contact Us on : crisisconnect@contact.com</h3>
+          <h3>For any inquiries or emergenciesplease reach out to us at crisisconnect@contact.com</h3>
         </div>
         <Footer />
       </main>
