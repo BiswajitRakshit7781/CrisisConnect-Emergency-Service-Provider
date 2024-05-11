@@ -6,29 +6,35 @@
 nav {
     height: 10vh;
     width: 90vw;
-    /* background: #fff; */
     z-index: 1;
-    /* border: 2px solid; */
     padding: 0 100px;
+    background-color: rgb(18, 19, 19);
+    color: greenyellow;
+}
+nav > ul > li > a {
+    color: chartreuse;
 }
 
 main {
-    width: 99vw;
     background: white;
-    height: 97vh;
+    min-height: 97.7vh;
+    height: auto;
+}
+.homemain{
+    width: 99vw;
 }
 a{
     text-decoration: none;
 }
 .home {
-    height: 70vh;
-    background-image: ".\src\assets\texture1.jpeg";
+    height: 100vh;
+    text-shadow: 2px 2px rgb(68, 0, 255);
 }
 
 .Aboutus {
     padding-top: 10vh;
     /* border: 2px solid; */
-    height: 70vh;
+    height: 90vh;
 }
 .Aboutus > p{
     padding: 0 160px;
@@ -38,13 +44,13 @@ a{
 .Services {
     padding-top: 10vh;
     /* border: 2px solid; */
-    height: 70vh;
+    height: 90vh;
 }
 
 .contacts {
     padding-top: 10vh;
     /* border: 2px solid; */
-    height: 40vh;
+    height: 25vh;
 }
 
 .cards {
@@ -58,7 +64,7 @@ a{
     border-radius: 10px;
 }
 
-.cards:hover, .login:hover {
+.cards:hover, .login:hover ,.logout:hover,.retdash:hover {
     transition: all .4s ease-in-out;
     transform: scale(1.20);
 }
@@ -73,13 +79,16 @@ a{
 }
 
 .login{
+    text-transform: uppercase;
     margin-top: 2%;
     height: 50px;
-    font-size: 16px;
-    color: black;
+    font-size: 19px;
+    color: #fff;
+    font-weight: 800;
     width:  130px;
     border-radius: 7px;
     cursor: pointer;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid black;
+    background-color: rgb(95, 25, 173);
+    border: 1px solid rgb(74, 212, 20);
+    box-shadow: 10px 10px 5px rgb(4, 23, 29);
 }

@@ -22,11 +22,11 @@ const HospitalDash = () => {
       }
   return (
     <>
-    <nav className="flex justify-between items-center bg-transparent fixed">
+    <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         <div className='flex gap-9'>
-        <button onClick={() => navigate("/dashboard")} className='login'>Dashboard</button>          
-        <button  className='login'>Log Out</button>
+        <button onClick={() => navigate("/dashboard")} className='retdash'>Dashboard</button>          
+        <button  className='logout'>Log Out</button>
         </div>
       </nav>
       <main className='dash'>

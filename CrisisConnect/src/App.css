@@ -9,37 +9,43 @@
     font-weight: 500;
   }
 .home{
-    background-image: url(./assets/texture2.jpeg);
+    background-image: linear-gradient(rgba(0,0,0,0.50),rgba(0,0,0,0.50)),url(./assets/home.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    color: rgb(219, 221, 221);
+    font-weight: 700;
+    font-size:xx-large;
 }
 .Services{
-    background-image: url(./assets/texture7.jpeg);
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(./assets/texture2.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    color: rgb(247, 247, 247);
 }
 .Aboutus{
-    background-image: url(./assets/texture3.jpeg);
+    background-image: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(./assets/texture3.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
+    color: azure;
+    font-weight: 600;
 }
 .contacts{
-    background-image: url(./assets/texture4.jpeg);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background:rgb(18, 19, 19);
+    color: white;
 }
 .lgbg{
-    background: url(./assets/texture5.jpeg);
+    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url(./assets/login.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
 .sup{
-    background: url(./assets/texture1.jpeg);
+    background:  linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url(./assets/signup.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
 .dash{
-    background: url(./assets/texture6.jpeg);
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(./assets/dashboard.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    color: #fff;
 }

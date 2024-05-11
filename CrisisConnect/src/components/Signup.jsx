@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { useForm } from "react-hook-form"
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
@@ -7,8 +8,8 @@ import "./Signup.css"
 import { useRef } from 'react'
 
 const Signup = () => {
-    const navigate=useNavigate()
-    const signin=useRef(false)
+    const navigate = useNavigate()
+    const signin = useRef(false)
     const {
         register,
         handleSubmit,
@@ -23,31 +24,43 @@ const Signup = () => {
             }, d * 1000);
         })
     }
-    function contains_upper(str){
-        for(let i=0;i<str.length;i++){
-            if(str[i]>='A' && str[i]<='Z'){
+    function contains_upper(str) {
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] >= 'A' && str[i] <= 'Z') {
                 return true
             }
         }
         return false
     }
-    const check_strong_pass=(password)=>{
-        let val=contains_upper(password)
+    const check_strong_pass = (password) => {
+        let val = contains_upper(password)
         console.log(val)
     }
-const onSubmit = async (data) => {
-    await delay(2)
-    check_strong_pass(data.password)
-    let r=await fetch("http://localhost:5000/createAccount",{method:"POST",headers: {
-        'Content-Type': 'application/json'
-    },body:JSON.stringify(data)})
-    let res=await r.json()
-    if(res.email_unique==false){
-        setError("inv_email",{message:"E-mail is already registered"})
-    }
-    signin.current=true
-};
+    const onSubmit = async (data) => {
+        await delay(2)
+        check_strong_pass(data.password)
+        let r = await fetch("http://localhost:5000/createAccount", {
+            method: "POST", headers: {
+                'Content-Type': 'application/json'
+            }, body: JSON.stringify(data)
+        })
+        let res = await r.json()
+        if (res.email_unique == false) {
+            setError("inv_email", { message: "E-mail is already registered" })
+        }
+        signin.current = true
+    };
 
+    const [isVisible, setIsVisible] = useState(true);
+
+    const handleHideAlert = () => {
+        setIsVisible(false);
+    };
+
+    const validatePassword = (value, { password }) => {
+        return value === password || "Passwords do not match";
+      };
+      
     return (
         <>
         {signin.current && (navigate("/Login"))}
@@ -60,15 +73,97 @@ const onSubmit = async (data) => {
                     <li><NavLink className='no-underline' to='/login'>Login</NavLink></li>
                 </ul>
             </nav>
-            <main className="sup flex justify-center items-center">
+            <main className="sup flex flex-col justify-center items-center">
+
+                <div id='alert' className="alert flex w-full flex-col items-center">
+                    {errors.name && isVisible && (
+                        <div>
+                            <p>Name is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.sex && isVisible && (
+                        <div>
+                            <p>Select your sex !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.height && isVisible && (
+                        <div>
+                            <p>Height is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.weight && isVisible && (
+                        <div>
+                            <p>Weight is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.bloodgroup && isVisible && (
+                        <div>
+                            <p>Please select your blood group</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.dob && isVisible && (
+                        <div>
+                            <p>Date of Birth is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.email && isVisible && (
+                        <div>
+                            <p>Email ID is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.phone && isVisible && (
+                        <div>
+                            <p>Enter a valid 10 digit phone number !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.aadhar && isVisible && (
+                        <div>
+                            <p>Enter a valid 12 digit Aadhar number !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.address && isVisible && (
+                        <div>
+                            <p>Address is required !</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.password && isVisible && (
+                        <div>
+                            <p>{errors.password.message}</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.confirmpassword && isVisible && (
+                        <div>
+                            <p>{errors.confirmpassword.message}</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                    {errors.inv_email && isVisible && (
+                        <div>
+                            <p>{errors.inv_email.message}</p>
+                            <button onClick={handleHideAlert} className='closebtn'>X</button>
+                        </div>
+                    )}
+                </div>
+
+
                 <div className="signupform flex flex-col items-center gap-12">
-                    <h1>New Registration</h1>
-                    {isSubmitting && <div>Loading....</div>}
+                    <h1 className='text-white'>New Registration</h1>
+                    {isSubmitting && <div className='loading'></div>}
 
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" {...register("name", { required: true })} placeholder="Enter Your Fullname" />
-                        {errors.name && alert('Enter your name')}
-                        
+
 
                         <select {...register("sex", { required: true })}>
                             <option value="">Select Your Sex</option>
@@ -76,13 +171,10 @@ const onSubmit = async (data) => {
                             <option value="female">Female</option>
                             <option value="others">Others</option>
                         </select>
-                        {errors.sex && alert('Select your sex')}
 
                         <input type="number" {...register("height", { required: true, maxLength: 3 })} placeholder="Enter Your Height In CM" />
-                        {errors.height && alert('Enter a valid height')}
 
-                        <input type="number" {...register("weight", { required: true, maxLength: 3})} placeholder="Enter Your Weight In KG" />
-                        {errors.weight && alert('Enter a valid weight')}
+                        <input type="number" {...register("weight", { required: true, maxLength: 3 })} placeholder="Enter Your Weight In KG" />
 
 
                         <select {...register("bloodgroup", { required: true })}>
@@ -96,36 +188,28 @@ const onSubmit = async (data) => {
                             <option value="AB+">AB+</option>
                             <option value="AB-">AB-</option>O+
                         </select>
-                        {errors.bloodgroup && alert('Please select your blood group')}
-                        
+
                         <input type="date" {...register("dob", { required: true })} placeholder="Enter Your Date Of Birth" />
-                        {errors.dob && alert('Date of Birth is Required!')}
 
                         <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
-                        {errors.email && alert('Enter a valid email id')}
 
-                        <input type="number" {...register("phone", { required: true, minLength:10 ,maxLength: 10 })} placeholder="Enter Your Phone Number" />
-                        {errors.phone && alert('Enter a valid 10 digit mobile number')}
+                        <input type="number" {...register("phone", { required: true, minLength: 10, maxLength: 10 })} placeholder="Enter Your Phone Number" />
 
 
-                        <input type="number" {...register("aadhar", { required: true,minLength:12, maxLength:12 })} placeholder="Enter Your Aadhar Card Number" />
-                        {errors.aadhar && alert('Enter a valid 12 digit aadhar number')}
+                        <input type="number" {...register("aadhar", { required: true, minLength: 12, maxLength: 12 })} placeholder="Enter Your Aadhar Card Number" />
 
-                        <input type="text" {...register("address", { required: true})} placeholder="Enter Your Home Address" />
-                        {errors.address && alert('Address in required')}
+                        <input type="text" {...register("address", { required: true })} placeholder="Enter Your Home Address" />
 
-                        <input type="password" {...register("password", { required: {value : true , message : 'Password is required'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Maximum 8 Character required" } })} placeholder="Enter Password" />
-                        {errors.password && alert(errors.password.message)}
-                        
+                        <input type="password" {...register("password", { required: { value: true, message: 'Password is required !' }, minLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
 
-                        <input type="password" {...register("confirmpassword", { required: {value : true , message : 'Re-enter password'}, minLength: { value: 4, message: "Minimum 4 Character required" }, maxLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
-                        {errors.confirmpassword && alert(errors.confirmpassword.message)}
-                        
+
+                        <input type="password" {...register("confirmpassword", { required: { value: true, message: 'Re-enter your password !' }, minLength: { value: 8, message: "Minimum 8 Character required" },validate: validatePassword })} placeholder="Re-enter Password" />
+
 
                         <input className="col-start-2" disabled={isSubmitting} type="submit" value='Register' />
 
                     </form>
-                    {errors.inv_email && <div className='error-red'>{errors.inv_email.message}</div>}
+                    {/* {errors.inv_email && <div className='error-red'>{errors.inv_email.message}</div>} */}
                 </div>
             </main>
             <Footer />
