@@ -84,7 +84,7 @@ const Signup = () => {
                     )}
                     {errors.sex && isVisible && (
                         <div>
-                            <p>Select your sex !</p>
+                            <p>Gender </p>
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
                         </div>
                     )}
@@ -132,7 +132,7 @@ const Signup = () => {
                     )}
                     {errors.address && isVisible && (
                         <div>
-                            <p>Address is required !</p>
+                            <p>Address !</p>
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
                         </div>
                     )}
@@ -158,7 +158,7 @@ const Signup = () => {
 
 
                 <div className="signupform flex flex-col items-center gap-12">
-                    <h1 className='text-white'>New Registration</h1>
+                    <h1 className='text-white'>Create Account</h1>
                     {isSubmitting && <div className='loading'></div>}
 
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>
@@ -166,7 +166,7 @@ const Signup = () => {
 
 
                         <select {...register("sex", { required: true })}>
-                            <option value="">Select Your Sex</option>
+                            <option value="">Gender</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
                             <option value="others">Others</option>
@@ -178,7 +178,7 @@ const Signup = () => {
 
 
                         <select {...register("bloodgroup", { required: true })}>
-                            <option value="">Select Your Blood Group</option>
+                            <option value="">Select Blood Group</option>
                             <option value="A+">A+</option>
                             <option value="A-">A-</option>
                             <option value="B+">B+</option>
@@ -189,16 +189,16 @@ const Signup = () => {
                             <option value="AB-">AB-</option>O+
                         </select>
 
-                        <input type="date" {...register("dob", { required: true })} placeholder="Enter Your Date Of Birth" />
+                        <input type="date" {...register("dob", { required: true })} placeholder="Date Of Birth" />
 
-                        <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
+                        <input type="email" {...register("email", { required: true })} placeholder="Email Address" />
 
-                        <input type="number" {...register("phone", { required: true, minLength: 10, maxLength: 10 })} placeholder="Enter Your Phone Number" />
+                        <input type="number" {...register("phone", { required: true, minLength: 10, maxLength: 10 })} placeholder="Phone Number" />
 
 
-                        <input type="number" {...register("aadhar", { required: true, minLength: 12, maxLength: 12 })} placeholder="Enter Your Aadhar Card Number" />
+                        <input type="number" {...register("aadhar", { required: true, minLength: 12, maxLength: 12 })} placeholder=" Aadhar Card Number" />
 
-                        <input type="text" {...register("address", { required: true })} placeholder="Enter Your Home Address" />
+                        <input type="text" {...register("address", { required: true })} placeholder="Home Address" />
 
                         <input type="password" {...register("password", { required: { value: true, message: 'Password is required !' }, minLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
 
@@ -206,7 +206,7 @@ const Signup = () => {
                         <input type="password" {...register("confirmpassword", { required: { value: true, message: 'Re-enter your password !' }, minLength: { value: 8, message: "Minimum 8 Character required" },validate: validatePassword })} placeholder="Re-enter Password" />
 
 
-                        <input className="col-start-2" disabled={isSubmitting} type="submit" value='Register' />
+                        <input className="col-start-2" disabled={isSubmitting} type="submit" value='Sign Up' />
 
                     </form>
                     {/* {errors.inv_email && <div className='error-red'>{errors.inv_email.message}</div>} */}
