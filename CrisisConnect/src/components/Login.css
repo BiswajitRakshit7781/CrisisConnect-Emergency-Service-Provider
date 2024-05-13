@@ -10,6 +10,7 @@
     width: 35%;
     border-radius: 25px;
     backdrop-filter: blur(15px);
+    box-shadow: black 4px 4px 10px;
 }
 
 form {
@@ -25,6 +26,7 @@ form {
     border: none;
     border-radius: 10px;
     padding-left: 5%;
+    box-shadow: black 4px 4px 10px;
 }
 
 .lgform>input[type=email]::placeholder,.lgform>input[type=number]::placeholder,
@@ -40,6 +42,7 @@ form {
     font-size: large;
     border-radius: 10px;
     cursor: pointer;
+    box-shadow: black 4px 4px 10px;
 }
 
 input[type=submit]:hover,.otp:hover , .verify:hover{

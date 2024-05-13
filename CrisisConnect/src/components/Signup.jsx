@@ -160,7 +160,7 @@ const Signup = () => {
 
 
                 <div className="signupform flex flex-col items-center gap-12">
-                    <h1 className='text-white'>Create Account</h1>
+                    <h1 className='text-white '>Create Account</h1>
                     {isSubmitting && <div className='loading top-20'></div>}
 
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>

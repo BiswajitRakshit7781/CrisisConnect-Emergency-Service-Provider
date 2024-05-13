@@ -15,8 +15,8 @@
     backdrop-filter:  blur(25px);
     background-repeat: no-repeat;
     background-size: cover;
-    color: black;
-    font-weight: 900;
+    color: rgb(30, 5, 70);
+    text-shadow: white 4px 4px 4px ;
     font-size:xx-large;
 }
 .Services{
@@ -34,11 +34,12 @@
     font-weight: 600;
 }
 .contacts{
-    background-image:linear-gradient (rgba(18, 19, 19, 0.75)),url(./assets/contact.jpg);
+    background-image: linear-gradient(rgba(65, 94, 240, 0.4),rgba(0, 0, 0, 0.4));
     color: rgb(0, 0, 0);
+    text-shadow: white 4px 4px 5px ;
 }
 .lgbg{
-    background: linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),url(./assets/login.jpg);
+    background: linear-gradient(rgba(200, 198, 198, 0.45),rgba(191, 189, 189, 0.45)),url(./assets/emergency1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -48,7 +49,7 @@
     background-size: cover;
 }
 .dash{
-    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url(./assets/dashboard.jpg);
+    background: linear-gradient(rgba(32, 31, 31, 0.75),rgba(65, 94, 140, 0.75)),url(./assets/contact.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     color: #fff;
