@@ -76,19 +76,19 @@ const Home = () => {
           <h1 className='flex justify-center'>Our Services</h1>
           <div ref={service} onMouseMove={handel_turn} onMouseLeave={neutral_turn} className="servicebox flex gap-20 justify-center">
             <div className="cards">
-              <img src=".\src\assets\fire_home.jpeg" alt="firesupport" />
+              <img src=".\src\assets\fire.jpg" alt="firesupport" />
               <h2>Fire Brigade Support</h2>
             </div>
             <div className="cards">
-              <img src=".\src\assets\police_home.jpeg" alt="policesupport" />
+              <img src=".\src\assets\police.jpg" alt="policesupport" />
               <h2>Police Support</h2>
             </div>
             <div className="cards">
-              <img src=".\src\assets\hospital_home.jpeg" alt="hospitalsupport" />
+              <img src=".\src\assets\nurse.jpg" alt="hospitalsupport" />
               <h2>Hospital Support</h2>
             </div>
             <div className="cards">
-              <img src=".\src\assets\medicine_home.jpeg" alt="medicalsupport" />
+              <img src=".\src\assets\shop.jpg" alt="medicalsupport" />
               <h2>Medical Support</h2>
             </div>
           </div>
