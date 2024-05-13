@@ -29,6 +29,9 @@ ul li:hover, .back:hover{
   transform: scale(1.2);
 }
 .error-red{
-  color: rgba(255, 0, 0, 0.774);
+  color: rgba(255, 0, 0, 0.717);
   font-size: 1.1em;
+}
+.card{
+  cursor: pointer;
 }

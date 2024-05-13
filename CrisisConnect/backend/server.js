@@ -6,6 +6,7 @@ import registered_users from './model/Schema_RegisteredUsers.js';
 import transporter from './model/mail.js';
 import mailOptions from './model/mailOptions.js';
 import admin from './model/admin_schema.js';
+import service from './model/service_seek_schema.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors())
@@ -17,17 +18,23 @@ const client=mongoose.connect('mongodb://0.0.0.0:27017/CrisisConnect').then((val
 app.get('/',(req,res)=>{
 res.send("hello world!!")
 })
-const log_stat={email:false,password:false,name:null}
+const log_stat={email:false,password:false,name:null,email_val:null}
 const admin_log_stat={email:false,password:false}
 
 const set_logout=(obj)=>{
   obj.email=false
   obj.password=false
   obj.name=null
+  obj.email_val=null
 }
 const set_logout_adm=(obj)=>{
   obj.email=false
   obj.password=false
+}
+const geo_code=async (latitude,longitude)=>{
+  let f=await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}%2C${longitude}&key=f5ec9f0dc41d40498e09d0421f507c4a`)
+  let res=await f.json()
+  return res
 }
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
@@ -77,6 +84,7 @@ app.post("/login",async (req,res)=>{
   if(db_email.password === log_pass){
     log_stat.password=true
     log_stat.name=db_email.fullname
+    log_stat.email_val=db_email.email
   }
   else
     log_stat.password=false
@@ -108,6 +116,35 @@ app.post("/admin-login",async (req,res)=>{
 app.get("/admin-logout",(req,res)=>{
   set_logout_adm(admin_log_stat)
   res.send(log_stat)
+})
+app.post("/request-service",async (req,res)=>{
+  let latitude=req.body.Latitude
+  let longitude=req.body.Longitude
+  let problem=req.body.service
+  let obj=await geo_code(latitude,longitude)
+  let now = new Date()
+  console.log(now)
+  if(log_stat.email===true && log_stat.password==true){
+    let user_details=await registered_users.findOne({email:log_stat.email_val})
+    try{
+    let serve=await new service({name:user_details.fullname,
+      email:user_details.email,
+      phone:user_details.phoneno,
+      req_time:now,
+      location:obj.results[0].formatted,
+      pincode:obj.results[0].components.postcode,
+      state:obj.results[0].components.state,
+      suburb:obj.results[0].components.suburb,
+      fullfilled:false,
+      service:problem})
+      await serve.save()
+      console.log("service created")
+      res.send("service request submitted")
+    }
+    catch(error){
+      console.log(error)
+    }
+  }
 })
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
