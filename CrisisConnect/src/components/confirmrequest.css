@@ -1,0 +1,13 @@
+.confirm{
+    height: 60vh;
+    width: 40vw;
+    position: absolute;
+    display: flex;
+    border-radius: 10%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    left: 30%;
+    top: 15%;
+}

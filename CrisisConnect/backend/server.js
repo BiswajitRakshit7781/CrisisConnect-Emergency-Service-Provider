@@ -121,9 +121,10 @@ app.post("/request-service",async (req,res)=>{
   let latitude=req.body.Latitude
   let longitude=req.body.Longitude
   let problem=req.body.service
+  let confirm=req.body.isconfirm
   let obj=await geo_code(latitude,longitude)
   let now = new Date()
-  console.log(now)
+  if(confirm){
   if(log_stat.email===true && log_stat.password==true){
     let user_details=await registered_users.findOne({email:log_stat.email_val})
     try{
@@ -136,7 +137,8 @@ app.post("/request-service",async (req,res)=>{
       state:obj.results[0].components.state,
       suburb:obj.results[0].components.suburb,
       fullfilled:false,
-      service:problem})
+      service:problem,
+      district:obj.results[0].components.state_district})
       await serve.save()
       console.log("service created")
       res.send("service request submitted")
@@ -144,7 +146,15 @@ app.post("/request-service",async (req,res)=>{
     catch(error){
       console.log(error)
     }
+  } }
+  else{
+  res.send(obj.results[0])
   }
+})
+app.post("/regitered-services",async (req,res)=>{
+  let service_name=req.body.name
+  let seekers=await service.find({service:service_name})
+  res.send(seekers)
 })
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

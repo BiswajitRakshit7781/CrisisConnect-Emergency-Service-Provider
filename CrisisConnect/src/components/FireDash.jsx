@@ -3,14 +3,19 @@ import './Dashboard.css'
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { useEffect,useState } from 'react'
-
+import Confirmrequest from './Confirmrequest'
+import "./confirmrequest.css"
 const FireDash = () => {
   const [nameFound,setNamefound]=useState(false)
+  const [serviceInfo,setServiceinfo]=useState(null)
+  const [locationfound,setLocationfound]=useState(false)
+  const [coordinateQuery,setCoordinateQuery]=useState({})
   const [name,setName]=useState('')
     const navigate = useNavigate();
     useEffect(()=>{
       get_name()
     },[])
+
     const get_name=async ()=>{
       let res=await fetch("http://localhost:5000/dashboard")
       let log_stat=await res.json()
@@ -35,14 +40,19 @@ const FireDash = () => {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             console.log("Latitude:", latitude, "Longitude:", longitude);
-            const coordinates={Latitude:latitude,Longitude:longitude,service:"Fire Support"}
+            setCoordinateQuery({Latitude:latitude,Longitude:longitude,service:"Fire Support",isconfirm:true})
+            const coordinates={Latitude:latitude,Longitude:longitude,service:"Fire Support",isconfirm:false}
             let res=await fetch("http://localhost:5000/request-service",{method:"POST",headers: {
               'Content-Type': 'application/json'
           },body:JSON.stringify(coordinates)})
-            let obj=await res.text()
-            console.log(obj)
+            let obj=await res.json()
+             console.log(obj)
+              setServiceinfo(obj)
+              setLocationfound(true)
         } catch (error) {
             console.error("Error accessing location:", error);
+            setLocationfound(false)
+
         }
     };
   return (
@@ -69,6 +79,8 @@ const FireDash = () => {
           </div>
         </div>
       </main>
+      {locationfound &&<Confirmrequest city={serviceInfo.components.suburb} state={serviceInfo.components.state} pincode={serviceInfo.components.postcode} address={serviceInfo.formatted} district={serviceInfo.components.
+state_district } flag={setLocationfound} query={coordinateQuery}/>}
       <Footer />
     </>
   )

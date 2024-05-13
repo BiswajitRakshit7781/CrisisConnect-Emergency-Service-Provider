@@ -1,27 +1,43 @@
 import React from 'react'
 
-const Confirmrequest = (props) => {
+const Confirmrequest = (title) => {
+  const submitRequest=async ()=>{
+      let res=await fetch("http://localhost:5000/request-service",{method:"POST",headers: {
+        'Content-Type': 'application/json'
+    },body:JSON.stringify(title.query)})
+    let r=await res.text()
+    alert(r)
+  }
+  const hide_page=()=>{
+    let c= document.querySelector(".confirm")
+    title.flag(false)
+    c.style.display="none"
+  }
   return (
     <div className='confirm'>
         <div className="city">
       <h3>city :</h3>
-      <span>props.city</span>
+      <span>{title.city}</span>
+      </div>
+      <div className="city">
+      <h3>district :</h3>
+      <span>{title.district}</span>
       </div>
       <div className="state">
       <h3>state :</h3>
-      <span>props.state</span>
+      <span>{title.state}</span>
       </div>
       <div className="pin">
       <h3>pincode :</h3>
-      <span>props.pincode</span>
+      <span>{title.pincode}</span>
       </div>
       <div className="address">
       <h3>address :</h3>
-      <span>props.address</span>
+      <span>{title.address}</span>
       </div>
       <div className="chioce">
-        <button>confirm</button>
-        <button>cancel</button>
+        <button onClick={submitRequest}>confirm</button>
+        <button onClick={hide_page}>cancel</button>
       </div>
     </div>
   )

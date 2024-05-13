@@ -2,10 +2,22 @@ import React from 'react'
 import './Dashboard.css'
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
-
+import { useRef,useEffect,useState } from 'react'
 const HospitalAdmin = () => {
+  const service=useRef({name:"Hospital"})
+  const [victim,setVictim]=useState([])
+  useEffect(()=>{
+   get_data()
+  },[])
   const navigate = useNavigate();
-
+  const get_data=async()=>{
+    let res=await fetch("http://localhost:5000/regitered-services",{method:"POST",headers: {
+      'Content-Type': 'application/json'
+  },body:JSON.stringify(service.current)})
+  let r=await res.json()
+  setVictim(r)
+}
+get_data()
   return (
     <>
       <nav className="flex justify-between items-center bg-transparent fixed">
@@ -29,19 +41,23 @@ const HospitalAdmin = () => {
                 <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Location</th>
                 <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>District</th>
                 <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>State</th>
+                <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Pin-Code</th>
                 <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'>Time</th>
               </tr>
             </thead>
             <tbody className='bg-white'>
-              <tr>
-                <td className="px-6 py-4 text-center whitespace-nowrap">Ram das</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">Ram@gmail.com</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">9898989898</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">New Market</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">Kolkata</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">West Bengal</td>
-                <td className="px-6 py-4 text-center whitespace-nowrap">5.30 PM</td>
-              </tr>
+            {victim.map((key)=>{
+              return(<tr key={key.email}>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.name}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.email}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.phone}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500"> {key.location}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.district}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.state}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.pincode}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500"> {key.req_time}</td>
+              </tr>)
+              })}
             </tbody>
           </table>
         </div>
