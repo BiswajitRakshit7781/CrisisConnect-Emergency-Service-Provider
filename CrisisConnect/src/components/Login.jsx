@@ -14,6 +14,7 @@ const Login = () => {
         register,
         handleSubmit,
         setError,
+        clearErrors,
         formState: { errors, isSubmitting },
     } = useForm()
 
@@ -48,6 +49,7 @@ const Login = () => {
 
     const handleHideAlert = () => {
         setIsVisible(false);
+        clearErrors();
     };
 
     return (
@@ -95,16 +97,17 @@ const Login = () => {
 
                 <div className="loginform flex flex-col items-center gap-9 ">
                     <h1>Login</h1>
-                    {isSubmitting && <div className='loading'></div>}
+                    {isSubmitting && <div className='loading top-28'></div>}
+
                     <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
 
                         <input type="email" {...register("email", { required: true })} placeholder="Enter Your Email Address" />
                         <input type="password" {...register("password", { required: { value : true, message: "Password is required !"} ,minLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder="Enter Password" />
 
-                        <NavLink className='no-underline text-black' to='#'>Forgot Password ?</NavLink>
+                        <NavLink className='no-underline text-black' to='/forgotpassword'>Forgot Password ?</NavLink>
 
                         <input disabled={isSubmitting} type="submit" value='Log In' />
-                        {/* {errors.myform && <div className="text-red-950">{errors.myform.message}</div>} */}
+                        {errors.myform && <div className="text-red-950">{errors.myform.message}</div>}
                         <NavLink className='no-underline text-black' to='/signup'>Don't Have An Account? Sign Up</NavLink>
                     </form>
                 </div>

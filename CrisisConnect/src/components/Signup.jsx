@@ -14,6 +14,7 @@ const Signup = () => {
         register,
         handleSubmit,
         setError,
+        clearErrors,
         formState: { errors, isSubmitting },
     } = useForm()
 
@@ -55,6 +56,7 @@ const Signup = () => {
 
     const handleHideAlert = () => {
         setIsVisible(false);
+        clearErrors();
     };
 
     const validatePassword = (value, { password }) => {
@@ -64,7 +66,7 @@ const Signup = () => {
     return (
         <>
         {signin.current && (navigate("/Login"))}
-            <nav className='flex justify-between items-center bg-transparent fixed'>
+            <nav className='flex justify-between items-center fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
                 <ul className='flex space-x-4 list-none'>
                     <li>
@@ -159,7 +161,7 @@ const Signup = () => {
 
                 <div className="signupform flex flex-col items-center gap-12">
                     <h1 className='text-white'>Create Account</h1>
-                    {isSubmitting && <div className='loading'></div>}
+                    {isSubmitting && <div className='loading top-20'></div>}
 
                     <form className="sgform grid grid-cols-3 gap-5" onSubmit={handleSubmit(onSubmit)}>
                         <input type="text" {...register("name", { required: true })} placeholder="Enter Your Fullname" />

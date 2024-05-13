@@ -18,7 +18,7 @@ form {
     width: 75%;
 }
 
-.lgform>input[type=email],
+.lgform>input[type=email],.lgform>input[type=number],
 .lgform>input[type=password] {
     width: 80%;
     height: 12%;
@@ -27,12 +27,12 @@ form {
     padding-left: 5%;
 }
 
-.lgform>input[type=email]::placeholder,
+.lgform>input[type=email]::placeholder,.lgform>input[type=number]::placeholder,
 .lgform>input[type=password]::placeholder {
     color: #0f0f0f;
 }
 
-.lgform>input[type=submit] {
+.lgform>input[type=submit],.otp,.verify {
     width: 35%;
     height: 12%;
     background-color: #0f0f0f;
@@ -42,15 +42,14 @@ form {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type=submit]:hover,.otp:hover , .verify:hover{
     transition: all .4s ease-in-out;
     transform: scale(1.05);
 }
 
 .loading {
     position: absolute;
-    top: 33%;
-    border: 8px solid #f3f3f3;
+    border: 5px solid #f3f3f3;
     border-top: 5px solid #3498db;
     border-radius: 50%;
     width: 25px;

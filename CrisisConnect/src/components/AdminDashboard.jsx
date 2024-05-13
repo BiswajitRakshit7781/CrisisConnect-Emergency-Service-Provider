@@ -14,9 +14,9 @@ const AdminDashboard = () => {
    }
   return (
     <>
-      <nav className="flex justify-between items-center bg-transparent fixed">
+      <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
-        <button className='login' onClick={set_logout}>Log Out</button>
+        <button className='logout' onClick={set_logout}>Log Out</button>
       </nav>
       <main className='dash'>
       <div className="welcome flex justify-center pt-32">

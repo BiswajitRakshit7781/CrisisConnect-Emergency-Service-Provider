@@ -15,6 +15,7 @@ import FireAdmin from './components/FireAdmin';
 import PoliceAdmin from './components/PoliceAdmin';
 import HospitalAdmin from './components/HospitalAdmin';
 import MedicineAdmin from './components/MedicineAdmin';
+import ForgotPassword from './components/ForgotPassword';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/policeadmin" element={<PoliceAdmin />} />
         <Route path="/hospitaladmin" element={<HospitalAdmin />} />
         <Route path="/medicineadmin" element={<MedicineAdmin />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
