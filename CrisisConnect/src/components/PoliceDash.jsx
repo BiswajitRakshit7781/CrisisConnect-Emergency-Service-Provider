@@ -20,6 +20,32 @@ const PoliceDash = () => {
       setName(log_stat.name)
       }
       }
+      const accessLocation = async () => {
+        try {
+            const position = await new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    resolve,
+                    reject,
+                    {
+                        maximumAge: 0,
+                        timeout: 5000,
+                        enableHighAccuracy: true
+                    }
+                );
+            });
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            console.log("Latitude:", latitude, "Longitude:", longitude);
+            const coordinates={Latitude:latitude,Longitude:longitude,service:"Police"}
+            let res=await fetch("http://localhost:5000/request-service",{method:"POST",headers: {
+              'Content-Type': 'application/json'
+          },body:JSON.stringify(coordinates)})
+            let obj=await res.text()
+            console.log(obj)
+        } catch (error) {
+            console.error("Error accessing location:", error);
+        }
+    };
   return (
     <>
     <nav className="flex justify-between items-center fixed">
@@ -34,7 +60,7 @@ const PoliceDash = () => {
           <h1>Welcome {name}</h1>
         </div>
         <div className="dashboard flex gap-20 justify-center mt-28">
-          <div className="card fireSupport">
+          <div className="card fireSupport" onClick={ accessLocation}>
             <img className="poster" src=".\src\assets\currentlocation.jpeg" alt="CurrentLocation" />
             <h2 className="text-center">Current Location</h2>
           </div>

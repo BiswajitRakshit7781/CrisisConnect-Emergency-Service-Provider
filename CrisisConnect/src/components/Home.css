@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -15,24 +16,27 @@ nav {
     font-size: 18px;
     backdrop-filter: blur(20px);
 }
-nav > ul > li > a {
+
+nav>ul>li>a {
     color: rgb(0, 0, 0);
 }
 
 main {
     background: white;
-    min-height: 97.7vh;
+    min-height: 98vh;
     height: auto;
 }
-.homemain{
-    width: 99vw;
+
+.homemain {
+    width: 99.14vw;
 }
-a{
+
+a {
     text-decoration: none;
 }
+
 .home {
     height: 100vh;
-    
 }
 
 .Aboutus {
@@ -40,7 +44,8 @@ a{
     /* border: 2px solid; */
     height: 90vh;
 }
-.Aboutus > p{
+
+.Aboutus>p {
     padding: 0 160px;
     font-size: 20px;
 }
@@ -49,6 +54,9 @@ a{
     padding-top: 10vh;
     /* border: 2px solid; */
     height: 90vh;
+}
+.servicebox{
+    gap: 5%;
 }
 
 .contacts {
@@ -68,7 +76,10 @@ a{
     border-radius: 10px;
 }
 
-.cards:hover, .login:hover ,.logout:hover,.retdash:hover {
+.cards:hover,
+.login:hover,
+.logout:hover,
+.retdash:hover {
     transition: all .4s ease-in-out;
     transform: scale(1.20);
 }
@@ -82,17 +93,97 @@ a{
     overflow: hidden;
 }
 
-.login{
+.login {
     text-transform: uppercase;
     margin-top: 2%;
     height: 50px;
     font-size: 19px;
     color: #fff;
     font-weight: 800;
-    width:  130px;
+    width: 130px;
     border-radius: 7px;
     cursor: pointer;
-    background-color: rgb(50, 100, 177);
-    border: none;
-    box-shadow: 5px 5px 5px rgb(4, 23, 29);
+    background-color: rgb(95, 25, 173);
+    border: 1px solid rgb(74, 212, 20);
+    box-shadow: 10px 10px 5px rgb(4, 23, 29);
+    transition: 0.2s ease-in-out;
+}
+
+@media only screen and (max-width:455px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    nav {
+        padding: 0;
+        width: 100vw;
+        height: auto;
+        display: block;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        padding-top: 20px;
+        gap: 1px;
+        justify-content: center;
+        text-wrap: nowrap;
+    }
+
+    nav ul li {
+        width: auto;
+    }
+
+    .homemain {
+        width: 100vw;
+    }
+
+    .home {
+        height: 95vh;
+    }
+
+    .tagline {
+        font-size: 18px;
+    }
+
+    .Aboutus,
+    .Services {
+        padding: 12vh 0;
+        gap: 10px;
+        height: auto;
+    }
+
+    .Aboutus p {
+        text-align: justify;
+        font-size: 12px;
+        padding: 0 50px;
+    }
+
+    .servicebox {
+        flex: 50%;
+        flex-wrap: wrap;
+        gap: 23px;
+    }
+
+    .cards {
+        height: 170px;
+        width: 160px;
+        border: 0.5px solid;
+        display: flex;
+        flex-direction: column;
+        gap: 8%;
+        border-radius: 10px;
+    }
+    .cards h2{
+        text-align: center;
+    }
+    .contacts h3{
+        text-align: center;
+        font-size: 15px;
+        padding: 0 50px;
+    }
 }

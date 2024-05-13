@@ -39,7 +39,9 @@ const Login = () => {
                 login.current = true
             }
             else
+            {
                 setError("inv_password", { message: "invalid password" })
+            }
         }
         else
             setError("inv_email", { message: "Looks like email not registered" })
