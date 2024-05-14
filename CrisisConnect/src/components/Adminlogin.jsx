@@ -96,8 +96,8 @@ const Adminlogin = () => {
 {/* 
                         {errors.password && <div className="text-red-950">{errors.password.message}</div>}
                         {errors.inv_pass && <div className='error-red'>{errors.inv_pass.message}</div>} */}
-                        <NavLink className='no-underline text-black' to='#'>Forgot Password ?</NavLink>
-                        <input disabled={isSubmitting} type="submit" value='Log In' />
+                        {/* <NavLink className='no-underline text-black' to='#'>Forgot Password ?</NavLink> */}
+                        <input className="mt-16" disabled={isSubmitting} type="submit" value='Log In' />
                         {/* {errors.myform && <div className="text-red-950">{errors.myform.message}</div>} */}
                     </form>
                 </div>
