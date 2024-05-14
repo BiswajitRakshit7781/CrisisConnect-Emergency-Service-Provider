@@ -3,14 +3,34 @@ import './Dashboard.css'
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import Adminlogout from './Adminlogout'
+import { useEffect,useState } from 'react'
 import "./logout.css"
 const AdminDashboard = () => {
+  useEffect(()=>{
+    const wait=async ()=>{
+      let c=await checkLogin()
+    if(!c){
+      navigate('/admin')
+    }
+    console.log(c)
+    }
+    wait()
+  },[])
   const navigate = useNavigate();
   const set_logout=()=>{
     let log_out=document.getElementById("logout-page")
     let sheet=document.getElementsByClassName("sheet")[0]
     log_out.style.display="flex"
     sheet.style.display="block"
+   }
+   const checkLogin=async ()=>{
+    let res=await fetch("http://localhost:5000/admin-dashboard")
+    let obj= await res.json()
+    if(obj.email && obj.password){
+      return true
+    }
+    else
+    return false
    }
   return (
     <>

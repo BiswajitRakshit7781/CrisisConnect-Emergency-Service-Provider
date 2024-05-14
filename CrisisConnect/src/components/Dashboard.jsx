@@ -7,20 +7,27 @@ import Logout_page from './Logout_page'
 import './logout.css'
 
 const Dashboard = () => {
-  const [nameFound,setNamefound]=useState(false)
   const [name,setName]=useState('')
+  const navigate = useNavigate();
 useEffect(()=>{
-  get_name()
+  const wait=async ()=>{
+    let c=await get_name()
+    if(!c){
+      navigate('/login')
+    }
+  }
+  wait()
 },[])
   const get_name=async ()=>{
     let res=await fetch("http://localhost:5000/dashboard")
     let log_stat=await res.json()
-    if(log_stat.name!==false){
-    setNamefound(true)
+    if(log_stat.email && log_stat.password){
     setName(log_stat.name)
+    return true
     }
+    else
+    return false
     }
-  const navigate = useNavigate();
    const set_logout=()=>{
     let log_out=document.getElementById("logout-page")
     let sheet=document.getElementsByClassName("sheet")[0]
@@ -30,7 +37,6 @@ useEffect(()=>{
   return (
     
     <>
-    {!nameFound && navigate("/login")}
       <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         {/* <button>Donate Us</button> */}

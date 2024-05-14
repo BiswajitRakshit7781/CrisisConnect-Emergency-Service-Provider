@@ -113,9 +113,12 @@ app.post("/admin-login",async (req,res)=>{
 }
   res.send(admin_log_stat)
 })
+app.get("/admin-dashboard",(req,res)=>{
+  res.send(admin_log_stat)
+})
 app.get("/admin-logout",(req,res)=>{
   set_logout_adm(admin_log_stat)
-  res.send(log_stat)
+  res.send(admin_log_stat)
 })
 app.post("/request-service",async (req,res)=>{
   let latitude=req.body.Latitude

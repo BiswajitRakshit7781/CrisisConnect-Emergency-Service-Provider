@@ -5,8 +5,9 @@ const Logout_page = (props) => {
   const navigate=useNavigate()
   const hide_logout=()=>{
     let logout=document.getElementById("logout-page")
+    let sheet=document.querySelector(".sheet")
     logout.style.display="none"
-    logout.nextElementSibling.style.display="none"
+    sheet.style.display="none"
   }
   const logout=async ()=>{
     let res=await fetch("http://localhost:5000/logout")

@@ -5,7 +5,7 @@ import { useNavigate, useOutlet } from 'react-router-dom'
 import { useEffect,useState } from 'react'
 import Confirmrequest from './Confirmrequest'
 import "./confirmrequest.css"
-
+import Logout_page from './Logout_page'
 const MedicineDash = () => {
     const navigate = useNavigate();
     const [nameFound,setNamefound]=useState(false)
@@ -58,13 +58,19 @@ const MedicineDash = () => {
             setLocationfound(false)
         }
     };
+    const set_logout=()=>{
+      let log_out=document.getElementById("logout-page")
+      let sheet=document.getElementsByClassName("sheet")[0]
+      log_out.style.display="flex"
+      sheet.style.display="block"
+     }
   return (
     <>
     <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         <div className='flex gap-9'>
         <button onClick={() => navigate("/dashboard")} className='retdash'>Dashboard</button>          
-        <button  className='logout'>Log Out</button>
+        <button  className='logout' onClick={set_logout}>Log Out</button>
         </div>
       </nav>
       <main className='dash'>
@@ -85,6 +91,7 @@ const MedicineDash = () => {
       {locationfound &&<Confirmrequest city={serviceInfo.components.suburb} state={serviceInfo.components.state} pincode={serviceInfo.components.postcode} address={serviceInfo.formatted} district={serviceInfo.components.
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
 <div className="sheet"></div>
+<Logout_page/>
       <Footer />
     </>
   )
