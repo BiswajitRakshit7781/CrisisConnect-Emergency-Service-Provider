@@ -28,7 +28,7 @@
 }
 
 .home {
-    background-image: linear-gradient(rgba(9, 75, 155, 0.8), rgba(207, 125, 125, 0.5)), url(./assets/Bg2.jpg);
+    background-image: linear-gradient(rgba(8, 52, 113, 0.9), rgba(207, 125, 125, 0.5)), url(./assets/Bg2.jpg);
     backdrop-filter: blur(25px);
     background-repeat: no-repeat;
     background-size: cover;
