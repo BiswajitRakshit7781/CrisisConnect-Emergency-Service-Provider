@@ -98,7 +98,7 @@ a {
     margin-top: 2%;
     height: 50px;
     font-size: 19px;
-    color: #fff;
+    color: #000000;
     font-weight: 800;
     width: 130px;
     border-radius: 7px;
@@ -107,8 +107,8 @@ a {
     background-color: rgb(50, 100, 177);
     border: none;
     box-shadow: 5px 5px 5px rgb(4, 23, 29);
-    background-color: rgb(95, 25, 173);
-    border: 1px solid rgb(74, 212, 20);
-    box-shadow: 10px 10px 5px rgb(4, 23, 29);
+    background-color: rgb(63, 121, 221);
+    border: none;
+    box-shadow: 10px 10px 15px rgb(4, 23, 29);
     transition: 0.2s ease-in-out;
 }
