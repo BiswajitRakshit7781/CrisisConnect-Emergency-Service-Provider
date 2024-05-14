@@ -15,6 +15,10 @@ const HospitalDash = () => {
     useEffect(()=>{
       get_name()
     },[])
+    const update_sheet=()=>{
+      let s=document.querySelector(".sheet")
+      s.style.display="block"
+    }
     const get_name=async ()=>{
       let res=await fetch("http://localhost:5000/dashboard")
       let log_stat=await res.json()
@@ -38,7 +42,6 @@ const HospitalDash = () => {
             });
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
-            console.log("Latitude:", latitude, "Longitude:", longitude);
             setCoordinateQuery({Latitude:latitude,Longitude:longitude,service:"Hospital",isconfirm:true})
             const coordinates={Latitude:latitude,Longitude:longitude,service:"Hospital",isconfirm:false}
             let res=await fetch("http://localhost:5000/request-service",{method:"POST",headers: {
@@ -47,6 +50,7 @@ const HospitalDash = () => {
             let obj=await res.json()
             setServiceinfo(obj)
             setLocationfound(true)
+            update_sheet()
         } catch (error) {
             console.error("Error accessing location:", error);
             setLocationfound(false)
@@ -78,6 +82,7 @@ const HospitalDash = () => {
       </main>
       {locationfound &&<Confirmrequest city={serviceInfo.components.suburb} state={serviceInfo.components.state} pincode={serviceInfo.components.postcode} address={serviceInfo.formatted} district={serviceInfo.components.
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
+<div className="sheet"></div>
       <Footer />
     </>
   )

@@ -16,6 +16,10 @@ const PoliceDash = () => {
     useEffect(()=>{
       get_name()
     },[])
+    const update_sheet=()=>{
+      let s=document.querySelector(".sheet")
+      s.style.display="block"
+    }
     const get_name=async ()=>{
       let res=await fetch("http://localhost:5000/dashboard")
       let log_stat=await res.json()
@@ -48,6 +52,7 @@ const PoliceDash = () => {
             let obj=await res.json()
             setServiceinfo(obj)
             setLocationfound(true)
+            update_sheet()
         } catch (error) {
             console.error("Error accessing location:", error);
             setLocationfound(false)
@@ -79,6 +84,7 @@ const PoliceDash = () => {
       </main>
       {locationfound &&<Confirmrequest city={serviceInfo.components.suburb} state={serviceInfo.components.state} pincode={serviceInfo.components.postcode} address={serviceInfo.formatted} district={serviceInfo.components.
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
+<div className="sheet"></div>
       <Footer />
     </>
   )

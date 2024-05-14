@@ -12,32 +12,33 @@ const Confirmrequest = (title) => {
     let c= document.querySelector(".confirm")
     title.flag(false)
     c.style.display="none"
+    c.nextElementSibling.style.display="none"
   }
   return (
     <div className='confirm'>
         <div className="city">
-      <h3>city :</h3>
-      <span>{title.city}</span>
+      <h3 className='heading'>city :</h3>
+      <span className='city-c'>{title.city}</span>
       </div>
       <div className="city">
-      <h3>district :</h3>
-      <span>{title.district}</span>
+      <h3  className='heading'>district :</h3>
+      <span className='district'>{title.district}</span>
       </div>
-      <div className="state">
-      <h3>state :</h3>
-      <span>{title.state}</span>
+      <div className="city">
+      <h3 className='heading'>state :</h3>
+      <span className='state'>{title.state}</span>
       </div>
-      <div className="pin">
-      <h3>pincode :</h3>
-      <span>{title.pincode}</span>
+      <div className="city">
+      <h3 className='heading'>pincode :</h3>
+      <span className='pin'>{title.pincode}</span>
       </div>
-      <div className="address">
-      <h3>address :</h3>
-      <span>{title.address}</span>
+      <div className="city address">
+      <h3 className='heading'>address :</h3>
+      <span className='add'>{title.address}</span>
       </div>
-      <div className="chioce">
-        <button onClick={submitRequest}>confirm</button>
-        <button onClick={hide_page}>cancel</button>
+      <div className="city buttons">
+        <button onClick={submitRequest} className="confirm-b">confirm</button>
+        <button onClick={hide_page} className="cancel">cancel</button>
       </div>
     </div>
   )
