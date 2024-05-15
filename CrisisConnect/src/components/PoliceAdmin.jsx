@@ -20,7 +20,7 @@ const PoliceAdmin = () => {
 }
   return (
     <>
-      <nav className="flex justify-between items-center bg-transparent fixed">
+      <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         <div className='flex gap-9'>
           <button onClick={() => navigate("/admindashboard")} className='login'>Dashboard</button>
