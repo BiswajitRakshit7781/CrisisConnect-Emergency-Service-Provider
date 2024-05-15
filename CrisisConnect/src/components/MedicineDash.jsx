@@ -8,13 +8,18 @@ import "./confirmrequest.css"
 import Logout_page from './Logout_page'
 const MedicineDash = () => {
     const navigate = useNavigate();
-    const [nameFound,setNamefound]=useState(false)
     const [serviceInfo,setServiceinfo]=useState(null)
   const [locationfound,setLocationfound]=useState(false)
   const [coordinateQuery,setCoordinateQuery]=useState({})
   const [name,setName]=useState('')
     useEffect(()=>{
-      get_name()
+      const wait=async ()=>{
+        let c=await get_name()
+        if(!c){
+          navigate('/login')
+        }
+      }
+      wait()
     },[])
     const update_sheet=()=>{
       let s=document.querySelector(".sheet")
@@ -23,10 +28,12 @@ const MedicineDash = () => {
     const get_name=async ()=>{
       let res=await fetch("http://localhost:5000/dashboard")
       let log_stat=await res.json()
-      if(log_stat.name!==false){
-      setNamefound(true)
+      if(log_stat.email && log_stat.password){
       setName(log_stat.name)
+      return true
       }
+      else
+      return false
       }
       const accessLocation = async () => {
         try {

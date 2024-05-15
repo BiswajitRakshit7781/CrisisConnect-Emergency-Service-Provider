@@ -46,9 +46,10 @@ const Signup = () => {
             }, body: JSON.stringify(data)
         })
         let res = await r.json()
-        if (res.email_unique == false) {
+        if (!res.email_unique) {
             setError("inv_email", { message: "E-mail is already registered" })
         }
+        else
         signin.current = true
     };
 
@@ -56,6 +57,7 @@ const Signup = () => {
 
     const handleHideAlert = () => {
         setIsVisible(false);
+        setError("aadhar",null)
         clearErrors();
     };
 
