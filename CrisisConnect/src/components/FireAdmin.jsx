@@ -3,6 +3,7 @@ import './Dashboard.css'
 import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { useRef,useState,useEffect } from 'react'
+import Adminlogout from './Adminlogout'
 
 const FireAdmin = () => {
   const [victim,setVictim]=useState([])
@@ -35,22 +36,29 @@ const checkLogin=async ()=>{
   else
   return false
  }
+
+ const set_logout=()=>{
+  let log_out=document.getElementById("logout-page")
+  let sheet=document.getElementsByClassName("sheet")[0]
+  log_out.style.display="flex"
+  sheet.style.display="block"
+ }
   return (
     <>
     <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         <div className='flex gap-9 '>
         <button onClick={() => navigate("/admindashboard")} className='loginup'>Dashboard</button>          
-        <button  className='loginup'>Log Out</button>
+        <button  className='loginup' onClick={set_logout}>Log Out</button>
         </div>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
-          <h1>Welcome Admin</h1>
+          <h1>Fire Support</h1>
         </div>
         <div className="tablebody ">
             <table className='tab'>
-                <thead className='tablecontent'>
+                <thead className='tablecontent sticky top-0'>
                     <tr>
                     <th className='user'><h4>User Name</h4></th>
                     <th className='user'><h4>Email ID</h4></th>
@@ -79,6 +87,8 @@ const checkLogin=async ()=>{
             </table>
         </div>
       </main>
+      <Adminlogout/>
+      <div className="sheet"></div>
       <Footer />
     </>
   )
