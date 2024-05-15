@@ -4,7 +4,6 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { useRef,useEffect,useState } from 'react'
 import Adminlogout from './Adminlogout'
-
 const MedicineAdmin = () => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
@@ -13,7 +12,6 @@ const MedicineAdmin = () => {
     if(!c){
       navigate('/admin')
     }
-    console.log(c)
     }
     wait()
    get_data()
@@ -49,6 +47,8 @@ const checkLogin=async ()=>{
         <div className='flex gap-9'>
           <button onClick={() => navigate("/admindashboard")} className='loginup'>Dashboard</button>
           <button className='loginup' onClick={set_logout}>Log Out</button>
+          <button onClick={() => navigate("/admindashboard")} className='login'>Dashboard</button>
+          <button className='login' onClick={set_logout}>Log Out</button>
         </div>
       </nav>
       <main className='dash'>
@@ -71,7 +71,7 @@ const checkLogin=async ()=>{
             </thead>
             <tbody className='bg-white'>
             {victim.map((key)=>{
-              return(<tr key={key.email}>
+              return(<tr key={key._id}>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.name}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.email}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.phone}</td>

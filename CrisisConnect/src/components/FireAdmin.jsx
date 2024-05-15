@@ -4,7 +4,7 @@ import Footer from './Footer'
 import { useNavigate } from 'react-router-dom'
 import { useRef,useState,useEffect } from 'react'
 import Adminlogout from './Adminlogout'
-
+import "./logout.css"
 const FireAdmin = () => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
@@ -13,7 +13,6 @@ const FireAdmin = () => {
     if(!c){
       navigate('/admin')
     }
-    console.log(c)
     }
     wait()
    get_data()
@@ -36,7 +35,6 @@ const checkLogin=async ()=>{
   else
   return false
  }
-
  const set_logout=()=>{
   let log_out=document.getElementById("logout-page")
   let sheet=document.getElementsByClassName("sheet")[0]
@@ -72,7 +70,7 @@ const checkLogin=async ()=>{
                 </thead>
                 <tbody className='bg-white'>
                 {victim.map((key)=>{
-              return(<tr key={key.email}>
+              return(<tr key={key._id}>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.name}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.email}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.phone}</td>

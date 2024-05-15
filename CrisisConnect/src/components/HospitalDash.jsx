@@ -28,7 +28,7 @@ const HospitalDash = () => {
     const get_name=async ()=>{
       let res=await fetch("http://localhost:5000/dashboard")
       let log_stat=await res.json()
-      if(log_stat.email && log_stat.passeord){
+      if(log_stat.email && log_stat.password){
       setName(log_stat.name)
       return true
       }

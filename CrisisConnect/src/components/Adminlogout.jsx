@@ -5,7 +5,8 @@ const Adminlogout = () => {
   const hide_logout = () => {
     let logout = document.getElementById("logout-page")
     logout.style.display = "none"
-    logout.nextElementSibling.style.display = "none"
+    let sheet = document.querySelector(".sheet")
+    sheet.style.display="none"
   }
   const logout = async () => {
     let res = await fetch("http://localhost:5000/admin-logout")
