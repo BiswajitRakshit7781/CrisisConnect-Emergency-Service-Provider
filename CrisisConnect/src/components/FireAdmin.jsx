@@ -23,27 +23,27 @@ get_data()
     <>
     <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
-        <div className='flex gap-9'>
-        <button onClick={() => navigate("/admindashboard")} className='login'>Dashboard</button>          
-        <button  className='login'>Log Out</button>
+        <div className='flex gap-9 '>
+        <button onClick={() => navigate("/admindashboard")} className='loginup'>Dashboard</button>          
+        <button  className='loginup'>Log Out</button>
         </div>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
           <h1>Welcome Admin</h1>
         </div>
-        <div className="overflow-x-auto pt-10">
-            <table className='table-auto min-w-full'>
-                <thead className='sticky top-0 bg-white'>
+        <div className="tablebody ">
+            <table className='tab'>
+                <thead className='tablecontent'>
                     <tr>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>User Name</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Email ID</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Phone No</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Location</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>District</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>State</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Pin-Code</h4></th>
-                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Time</h4></th>
+                    <th className='user'><h4>User Name</h4></th>
+                    <th className='user'><h4>Email ID</h4></th>
+                    <th className='user'><h4>Phone No</h4></th>
+                    <th className='user'><h4>Location</h4></th>
+                    <th className='user'><h4>District</h4></th>
+                    <th className='user'><h4>State</h4></th>
+                    <th className='user'><h4>Pin-Code</h4></th>
+                    <th className='user'><h4>Time</h4></th>
                     </tr>
                 </thead>
                 <tbody className='bg-white'>
