@@ -7,6 +7,14 @@ import { useRef,useState,useEffect } from 'react'
 const FireAdmin = () => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
+    const wait=async ()=>{
+      let c=await checkLogin()
+    if(!c){
+      navigate('/admin')
+    }
+    console.log(c)
+    }
+    wait()
    get_data()
   },[])
     const navigate = useNavigate();
@@ -18,7 +26,15 @@ const FireAdmin = () => {
   let r=await res.json()
   setVictim(r)
 }
-get_data()
+const checkLogin=async ()=>{
+  let res=await fetch("http://localhost:5000/admin-dashboard")
+  let obj= await res.json()
+  if(obj.email && obj.password){
+    return true
+  }
+  else
+  return false
+ }
   return (
     <>
     <nav className="flex justify-between items-center fixed">
