@@ -17,28 +17,28 @@ const Confirmrequest = (title) => {
   return (
     <div className='confirm'>
         <div className="city">
-      <h3 className='heading'>city :</h3>
+      <h3 className='heading'>City :</h3>
       <span className='city-c'>{title.city}</span>
       </div>
       <div className="city">
-      <h3  className='heading'>district :</h3>
+      <h3  className='heading'>District :</h3>
       <span className='district'>{title.district}</span>
       </div>
       <div className="city">
-      <h3 className='heading'>state :</h3>
+      <h3 className='heading'>State :</h3>
       <span className='state'>{title.state}</span>
       </div>
       <div className="city">
-      <h3 className='heading'>pincode :</h3>
+      <h3 className='heading'>Pincode :</h3>
       <span className='pin'>{title.pincode}</span>
       </div>
       <div className="city address">
-      <h3 className='heading'>address :</h3>
+      <h3 className='heading'>Address :</h3>
       <span className='add'>{title.address}</span>
       </div>
       <div className="city buttons">
-        <button onClick={submitRequest} className="confirm-b">confirm</button>
-        <button onClick={hide_page} className="cancel">cancel</button>
+        <button onClick={submitRequest} className="confirm-b">Confirm</button>
+        <button onClick={hide_page} className="cancel">Cancel</button>
       </div>
     </div>
   )
