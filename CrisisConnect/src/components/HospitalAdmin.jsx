@@ -50,8 +50,6 @@ const checkLogin=async ()=>{
         <div className='flex gap-9'>
           <button onClick={() => navigate("/admindashboard")} className='loginup'>Dashboard</button>
           <button className='loginup' onClick={set_logout}>Log Out</button>
-          <button onClick={() => navigate("/admindashboard")} className='login'>Dashboard</button>
-          <button className='login' onClick={set_logout}>Log Out</button>
         </div>
       </nav>
       <main className='dash'>

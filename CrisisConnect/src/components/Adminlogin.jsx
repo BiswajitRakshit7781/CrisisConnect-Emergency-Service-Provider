@@ -55,6 +55,7 @@ const Adminlogin = () => {
             {login && navigate('/AdminDashboard')}
             <nav className='flex justify-between items-center fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
+                <div><NavLink className='no-underline' to="/"><h3>Home</h3></NavLink></div>
             </nav>
             <main className='lgbg flex justify-center items-center'>
                 <div id='alert' className="alert flex w-full flex-col items-center">

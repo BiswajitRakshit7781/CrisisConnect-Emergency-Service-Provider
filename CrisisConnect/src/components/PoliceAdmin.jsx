@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { useRef,useState,useEffect } from 'react'
 import Adminlogout from './Adminlogout'
 import "./logout.css"
-
-
 const PoliceAdmin = () => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
@@ -50,8 +48,6 @@ const checkLogin=async ()=>{
         <div className='flex gap-9'>
           <button onClick={() => navigate("/admindashboard")} className='loginup'>Dashboard</button>
           <button className='loginup' onClick={set_logout}>Log Out</button>
-          <button onClick={() => navigate("/admindashboard")} className='login'>Dashboard</button>
-          <button className='login' onClick={set_logout}>Log Out</button>
         </div>
       </nav>
       <main className='dash'>
