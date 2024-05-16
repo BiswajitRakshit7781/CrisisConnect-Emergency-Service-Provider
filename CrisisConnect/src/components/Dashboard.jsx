@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react'
 import Logout_page from './Logout_page'
 import './logout.css'
 import ChatBox from './ChatBox'
-import Donation from './Donation'
 
 const Dashboard = () => {
   const [name, setName] = useState('')
@@ -41,10 +40,7 @@ const Dashboard = () => {
     <>
       <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
-        <div className='flex gap-9'>
-        <button className='retdash'>Donate Us</button>
         <button className='logout' onClick={set_logout}>Log Out</button>
-        </div>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
@@ -72,7 +68,6 @@ const Dashboard = () => {
       <Logout_page />
       <div className="sheet"></div>
       <Footer />
-      {/* <Donation/> */}
       <ChatBox />
     </>
   )
