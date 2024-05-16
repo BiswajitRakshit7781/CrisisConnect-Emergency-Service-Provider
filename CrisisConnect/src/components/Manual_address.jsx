@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import "./Manualaddress.css"
+import "./Login.css"
 const Manual_address = (title) => {
   const {
     register,
@@ -155,16 +156,14 @@ const hide_page=()=>{
       </div>
       <div className="homediv">
         <label htmlFor="hdistrict">
-          Pin-code:
+          District:
         </label>
-        <input type="text" {...register("hdistrict",{required:true})} placeholder="pincode"/>
+        <input type="text" {...register("hdistrict",{required:true})} placeholder="district"/>
       </div>
       <div className="butons">
         <button type='submit'>Confirm</button>
       </div>
-      <div className="homediv">
-        {title.hservice}
-      </div>
+     {isSubmitting && <div className='loading top-28'></div>}
     </form>
     </div>
   )

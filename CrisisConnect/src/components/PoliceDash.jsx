@@ -6,6 +6,7 @@ import { useEffect,useState } from 'react'
 import Confirmrequest from './Confirmrequest'
 import "./confirmrequest.css"
 import Logout_page from './Logout_page'
+import Manual_address from './Manual_address'
 const PoliceDash = () => {
     const navigate = useNavigate();
     const [serviceInfo,setServiceinfo]=useState(null)
@@ -71,6 +72,12 @@ const PoliceDash = () => {
       log_out.style.display="flex"
       sheet.style.display="block"
      }
+     const getlocationpage=()=>{
+      let mp=document.querySelector(".manual_address")
+      let sheet=document.getElementsByClassName("sheet")[0]
+  mp.style.display="block"
+  sheet.style.display="block"
+     }
   return (
     <>
     <nav className="flex justify-between items-center fixed">
@@ -89,7 +96,7 @@ const PoliceDash = () => {
             <img className="poster" src=".\src\assets\currentlocation.jpeg" alt="CurrentLocation" />
             <h2 className="text-center">Current Location</h2>
           </div>
-          <div className="card policeSupport">
+          <div className="card policeSupport" onClick={getlocationpage}>
             <img className="poster" src=".\src\assets\homelocation.jpeg" alt="HomeLocation" />
             <h2 className="title">Home Location</h2>
           </div>
@@ -99,6 +106,7 @@ const PoliceDash = () => {
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
 <div className="sheet"></div>
 <Logout_page/>
+<Manual_address/>
       <Footer />
     </>
   )

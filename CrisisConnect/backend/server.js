@@ -188,11 +188,12 @@ app.post("/reqsermanually",async (req,res)=>{
       service:req.body.hservice,
       district:req.body.hdistrict})
       await serve.save()
+      console.log("service created")
       let requestMailOptions = {
         from: mailOptions.from,
         to: user_details.email,
         subject: "Service Request Confirmation",
-        text: `Dear ${user_details.fullname},\n\nYour service request for '${problem}' has been successfully submitted.\n\nDetails:\nLocation: ${obj.results[0].formatted}\nTime: ${now}\n\nThank you,\nCrisisConnect Team`
+        text: `Dear ${user_details.fullname},\n\nYour service request for '${req.body.hservice}' has been successfully submitted.\n\nDetails:\nLocation: ${req.body.haddress}\nTime: ${now}\n\nThank you,\nCrisisConnect Team`
       };
       transporter.sendMail(requestMailOptions, (error, info) => {
         if (error) {
