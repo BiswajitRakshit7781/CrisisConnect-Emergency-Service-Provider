@@ -2,45 +2,46 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Dashboard.css'
 import Footer from './Footer'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Logout_page from './Logout_page'
 import './logout.css'
+import ChatBox from './ChatBox'
 
 const Dashboard = () => {
-  const [name,setName]=useState('')
+  const [name, setName] = useState('')
   const navigate = useNavigate();
-useEffect(()=>{
-  const wait=async ()=>{
-    let c=await get_name()
-    if(!c){
-      navigate('/login')
+  useEffect(() => {
+    const wait = async () => {
+      let c = await get_name()
+      if (!c) {
+        navigate('/login')
+      }
     }
-  }
-  wait()
-},[])
-  const get_name=async ()=>{
-    let res=await fetch("http://localhost:5000/dashboard")
-    let log_stat=await res.json()
-    if(log_stat.email && log_stat.password){
-    setName(log_stat.name)
-    return true
+    wait()
+  }, [])
+  const get_name = async () => {
+    let res = await fetch("http://localhost:5000/dashboard")
+    let log_stat = await res.json()
+    if (log_stat.email && log_stat.password) {
+      setName(log_stat.name)
+      return true
     }
     else
-    return false
-    }
-   const set_logout=()=>{
-    let log_out=document.getElementById("logout-page")
-    let sheet=document.getElementsByClassName("sheet")[0]
-    log_out.style.display="flex"
-    sheet.style.display="block"
-   }
+      return false
+  }
+  const set_logout = () => {
+    let log_out = document.getElementById("logout-page")
+    let sheet = document.getElementsByClassName("sheet")[0]
+    log_out.style.display = "flex"
+    sheet.style.display = "block"
+  }
   return (
-    
+
     <>
       <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
         {/* <button>Donate Us</button> */}
-        <button  className='logout' onClick={set_logout}>Log Out</button>
+        <button className='logout' onClick={set_logout}>Log Out</button>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
@@ -68,7 +69,7 @@ useEffect(()=>{
       <Logout_page />
       <div className="sheet"></div>
       <Footer />
-
+      <ChatBox />
     </>
   )
 }
