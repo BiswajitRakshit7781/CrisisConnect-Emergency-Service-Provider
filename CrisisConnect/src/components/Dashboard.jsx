@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react'
 import Logout_page from './Logout_page'
 import './logout.css'
 import ChatBox from './ChatBox'
+import Donation from './Donation'
 
 const Dashboard = () => {
   const [name, setName] = useState('')
@@ -71,6 +72,7 @@ const Dashboard = () => {
       <Logout_page />
       <div className="sheet"></div>
       <Footer />
+      {/* <Donation/> */}
       <ChatBox />
     </>
   )

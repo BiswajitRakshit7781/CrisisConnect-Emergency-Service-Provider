@@ -1,0 +1,20 @@
+.donation{
+    height: 60vh;
+    width: 40vw;
+    border: 1px solid;
+    position: absolute;
+    top: 12vh;
+    left: 30vw;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    align-items: center;
+    padding: 5% 0;
+    background-color: antiquewhite;
+    border-radius: 50px;
+
+}
+.donationimg{
+    height: 300px;
+    width: 300px;
+}
