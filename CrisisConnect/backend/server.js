@@ -169,6 +169,33 @@ app.post("/request-service",async (req,res)=>{
   res.send(obj.results[0])
   }
 })
+app.post("/reqsermanually",async (req,res)=>{
+  if(log_stat.email && log_stat.password){
+    let now=new Date()
+    let user_details=await registered_users.findOne({email:log_stat.email_val})
+    try{
+    let serve=await new service({name:user_details.fullname,
+      email:user_details.email,
+      phone:user_details.phoneno,
+      req_time:now,
+      location:req.body.haddress,
+      pincode:req.body.hpin,
+      state:req.body.hstate,
+      suburb:req.body.hcity,
+      fullfilled:false,
+      service:req.body.hservice,
+      district:req.body.hdistrict})
+      await serve.save()
+      res.send(true)
+    }
+      catch(error){
+        res.send(false)
+      } 
+  }
+  else{
+    res.send(false)
+  }
+})
 app.post("/regitered-services",async (req,res)=>{
   let service_name=req.body.name
   let seekers=await service.find({service:service_name})

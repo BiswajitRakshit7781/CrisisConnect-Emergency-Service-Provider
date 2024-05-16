@@ -1,0 +1,13 @@
+.manual_address{
+    height: 60vh;
+    width: 30vw;
+    position: absolute;
+    left: 40vw;
+    top: 30vh;
+    background-color: white;
+    z-index: 2;
+    display: none;
+}
+.sheet{
+    z-index: 1;
+}
