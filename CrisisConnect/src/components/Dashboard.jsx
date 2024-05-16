@@ -40,8 +40,10 @@ const Dashboard = () => {
     <>
       <nav className="flex justify-between items-center fixed">
         <div><h1 className=" logo">CrisisConnect</h1></div>
-        {/* <button>Donate Us</button> */}
+        <div className='flex gap-9'>
+        <button className='retdash'>Donate Us</button>
         <button className='logout' onClick={set_logout}>Log Out</button>
+        </div>
       </nav>
       <main className='dash'>
         <div className="welcome flex justify-center pt-32">
