@@ -106,7 +106,7 @@ const MedicineDash = () => {
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
 <div className="sheet"></div>
 <Logout_page/>
-<Manual_address hservice={"medicine"}/>
+<Manual_address hservice={"Medicine"}/>
       <Footer />
     </>
   )
