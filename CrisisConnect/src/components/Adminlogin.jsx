@@ -55,7 +55,12 @@ const Adminlogin = () => {
             {login && navigate('/AdminDashboard')}
             <nav className='flex justify-between items-center fixed'>
                 <div className="logo"><h1 className="logo">CrisisConnect</h1></div>
-                <div><NavLink className='no-underline' to="/"><h3>Home</h3></NavLink></div>
+                <ul>
+                    <li>
+                        <NavLink className='no-underline' to="/">Home</NavLink>
+
+                    </li>
+                </ul>
             </nav>
             <main className='lgbg flex justify-center items-center'>
                 <div id='alert' className="alert flex w-full flex-col items-center">
@@ -83,7 +88,7 @@ const Adminlogin = () => {
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
                         </div>
                     )}
-                    </div>
+                </div>
 
                 <div className="loginform flex flex-col items-center gap-12">
                     <h1>Admin Login</h1>
@@ -94,7 +99,7 @@ const Adminlogin = () => {
                         {/* {errors.inv_email && <div className='error-red'>{errors.inv_email.message}</div>} */}
 
                         <input type="password" {...register("password", { required: true })} placeholder="Enter Password" />
-{/* 
+                        {/* 
                         {errors.password && <div className="text-red-950">{errors.password.message}</div>}
                         {errors.inv_pass && <div className='error-red'>{errors.inv_pass.message}</div>} */}
                         {/* <NavLink className='no-underline text-black' to='#'>Forgot Password ?</NavLink> */}
