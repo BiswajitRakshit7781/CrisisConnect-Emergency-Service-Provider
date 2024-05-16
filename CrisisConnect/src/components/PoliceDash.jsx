@@ -106,7 +106,7 @@ const PoliceDash = () => {
 state_district } flag={setLocationfound} query={coordinateQuery}/>}
 <div className="sheet"></div>
 <Logout_page/>
-<Manual_address/>
+<Manual_address hservice={"Police"}/>
       <Footer />
     </>
   )
