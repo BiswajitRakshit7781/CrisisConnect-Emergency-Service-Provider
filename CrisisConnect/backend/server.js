@@ -144,7 +144,6 @@ app.post("/request-service",async (req,res)=>{
       district:obj.results[0].components.state_district})
       await serve.save()
       console.log("service created")
-      res.send("service request submitted")
       let requestMailOptions = {
         from: mailOptions.from,
         to: user_details.email,
@@ -156,15 +155,18 @@ app.post("/request-service",async (req,res)=>{
           console.log("Error sending email: ", error);
           res.status(500).send("Service request submitted, but there was an error sending the confirmation email.");
         } else {
-          console.log("Email sent successfully: ", info.response);
+          console.log("Email sent successfully: ");
           res.send("Service request submitted and confirmation email sent.");
         }
       });
     }
     catch(error){
-      console.log(error)
+      res.send("Sorry your service request cannot be submitted try again after some time")
     }
-  } }
+  }
+  else
+  res.send("Sorry your service request cannot be submitted try again after some time")
+ }
   else{
   res.send(obj.results[0])
   }
@@ -186,14 +188,28 @@ app.post("/reqsermanually",async (req,res)=>{
       service:req.body.hservice,
       district:req.body.hdistrict})
       await serve.save()
-      res.send(true)
+      let requestMailOptions = {
+        from: mailOptions.from,
+        to: user_details.email,
+        subject: "Service Request Confirmation",
+        text: `Dear ${user_details.fullname},\n\nYour service request for '${problem}' has been successfully submitted.\n\nDetails:\nLocation: ${obj.results[0].formatted}\nTime: ${now}\n\nThank you,\nCrisisConnect Team`
+      };
+      transporter.sendMail(requestMailOptions, (error, info) => {
+        if (error) {
+          console.log("Error sending email: ", error);
+          res.status(500).send("Service request submitted, but there was an error sending the confirmation email.");
+        } else {
+          console.log("Email sent successfully: ");
+          res.send("Service request submitted and confirmation email sent.");
+        }
+      });
     }
       catch(error){
-        res.send(false)
+      res.send("Sorry your service request cannot be submitted try again after some time")
       } 
   }
   else{
-    res.send(false)
+    res.send("Sorry your service request cannot be submitted try again after some time")
   }
 })
 app.post("/regitered-services",async (req,res)=>{
