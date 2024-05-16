@@ -37,11 +37,6 @@ const Manual_address = (title) => {
         <button onClick={hide_page}>Cancel</button>
       </div>
       <form className='sheetform' onSubmit={handleSubmit(onSubmit)}>
-      {isSubmitting && <div className='loading top-28'></div>}
-      {/* <div className='loading top-28'></div> */}
-        <div className="homediv">
-          {title.hservice}
-        </div>
         <div className="homediv">
           <label htmlFor="haddress">
             Address:
@@ -170,7 +165,10 @@ const Manual_address = (title) => {
           <input type="text" {...register("hdistrict", { required: true })} placeholder="District" />
         </div>
         <div className="butons">
-          <button disabled={isSubmitting} type='submit'>Confirm</button>
+          <button type='submit'>Confirm</button>
+        </div>
+        <div className="homediv">
+          {title.hservice}
         </div>
       </form>
     </div>
