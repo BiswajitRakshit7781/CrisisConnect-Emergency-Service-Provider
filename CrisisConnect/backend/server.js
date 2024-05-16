@@ -145,6 +145,21 @@ app.post("/request-service",async (req,res)=>{
       await serve.save()
       console.log("service created")
       res.send("service request submitted")
+      let requestMailOptions = {
+        from: mailOptions.from,
+        to: user_details.email,
+        subject: "Service Request Confirmation",
+        text: `Dear ${user_details.fullname},\n\nYour service request for '${problem}' has been successfully submitted.\n\nDetails:\nLocation: ${obj.results[0].formatted}\nTime: ${now}\n\nThank you,\nCrisisConnect Team`
+      };
+      transporter.sendMail(requestMailOptions, (error, info) => {
+        if (error) {
+          console.log("Error sending email: ", error);
+          res.status(500).send("Service request submitted, but there was an error sending the confirmation email.");
+        } else {
+          console.log("Email sent successfully: ", info.response);
+          res.send("Service request submitted and confirmation email sent.");
+        }
+      });
     }
     catch(error){
       console.log(error)
