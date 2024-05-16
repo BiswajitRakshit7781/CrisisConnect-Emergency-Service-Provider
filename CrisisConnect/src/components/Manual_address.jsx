@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import "./Manualaddress.css"
-import "./Login.css"
 const Manual_address = (title) => {
   const {
     register,
@@ -37,6 +36,9 @@ const Manual_address = (title) => {
         <button onClick={hide_page}>Cancel</button>
       </div>
       <form className='sheetform' onSubmit={handleSubmit(onSubmit)}>
+        <div className="homediv">
+          {title.hservice}
+        </div>
         <div className="homediv">
           <label htmlFor="haddress">
             Address:
@@ -165,10 +167,7 @@ const Manual_address = (title) => {
           <input type="text" {...register("hdistrict", { required: true })} placeholder="District" />
         </div>
         <div className="butons">
-          <button type='submit'>Confirm</button>
-        </div>
-        <div className="homediv">
-          {title.hservice}
+          <button disabled={isSubmitting} type='submit'>Confirm</button>
         </div>
       </form>
     </div>
