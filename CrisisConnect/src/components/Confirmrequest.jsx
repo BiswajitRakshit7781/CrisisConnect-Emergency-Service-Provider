@@ -10,9 +10,10 @@ const Confirmrequest = (title) => {
   }
   const hide_page=()=>{
     let c= document.querySelector(".confirm")
+    let sheet=document.querySelector(".sheet")
     title.flag(false)
     c.style.display="none"
-    c.nextElementSibling.style.display="none"
+    sheet.style.display="none"
   }
   return (
     <div className='confirm'>
