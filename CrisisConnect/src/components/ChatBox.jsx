@@ -16,6 +16,20 @@ const ChatBox = () => {
         setIsVisible(false);
         setBtnVisible(true);
     }
+    const handelmessege=async ()=>{
+        let msgbox=document.querySelector(".sendmsg")
+        let obj={sender:"user",messege:msgbox.value}
+        let res=await fetch("http://localhost:5000/chat-post",{
+            method: "POST", headers: {
+              'Content-Type': 'application/json'
+            }, body: JSON.stringify(obj)})
+        let r= await res.json()
+        if(r.chat){
+            let sending=document.querySelector(".messages")
+            sending.innerHTML+=`<p class='sending'>${msgbox.value}</p>`
+            msgbox.value=""
+        }
+    }
     return (
         <div className="absolute bottom-10 right-10">
             {isVisible &&
@@ -25,12 +39,10 @@ const ChatBox = () => {
                         <button onClick={handleHideAlert} className='text-red-700 chatbtn'>X</button>
                     </div>
                     <div className="messages flex">
-                        <p className="reply">hello</p>
-                        <p className="sending">hii</p>
                     </div>
                     <div className='send flex gap-4'>
                         <input className='sendmsg' placeholder="Enter Message" />
-                        <button className='sndbtn'>Send</button>
+                        <button className='sndbtn' onClick={handelmessege}>Send</button>
                     </div>
                 </div>
             }

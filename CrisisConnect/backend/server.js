@@ -7,6 +7,7 @@ import transporter from './model/mail.js';
 import mailOptions from './model/mailOptions.js';
 import admin from './model/admin_schema.js';
 import service from './model/service_seek_schema.js';
+import messege from './model/messege_schema.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors())
@@ -217,6 +218,21 @@ app.post("/regitered-services",async (req,res)=>{
   let service_name=req.body.name
   let seekers=await service.find({service:service_name})
   res.send(seekers)
+})
+app.post("/chat-post",async (req,res)=>{
+  if(log_stat.email && log_stat.password){
+  const msg=await messege.findOne({email:log_stat.email_val})
+  if(msg===null){
+    let new_msg=await new messege({email:log_stat.email_val,Messege:[{sender:req.body.sender,messege:req.body.messege}]})
+    await new_msg.save()
+  }
+  else{
+    let all_msg=await messege.findOne({email:log_stat.email_val})
+    all_msg.Messege.push({sender:req.body.sender,messege:req.body.messege})
+    await messege.findOneAndUpdate({email:log_stat.email_val},{Messege:all_msg.Messege})
+  }
+  res.send({chat:true})
+}
 })
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

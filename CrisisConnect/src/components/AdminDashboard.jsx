@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Adminlogout from './Adminlogout'
 import { useEffect,useState } from 'react'
 import "./logout.css"
+import ChatBox from './ChatBox'
 const AdminDashboard = () => {
   useEffect(()=>{
     const wait=async ()=>{
@@ -64,6 +65,7 @@ const AdminDashboard = () => {
       <Adminlogout/>
       <div className="sheet"></div>
       <Footer />
+      <ChatBox/>
     </>
   )
 }
