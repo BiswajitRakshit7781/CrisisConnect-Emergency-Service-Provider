@@ -27,3 +27,7 @@
     font-weight: 600;
     cursor: pointer;
 }
+.donationclosebtn:hover,.donbtn:hover{
+    transition: all .4s ease-in-out;
+    transform: scale(1.2);
+}

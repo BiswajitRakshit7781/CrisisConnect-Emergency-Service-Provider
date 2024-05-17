@@ -55,6 +55,10 @@
     font-weight: 900;
     background: transparent;
     border-radius: 10px;
-    border: 1px solid;
+    border: none;
     cursor: pointer;
+}
+.chat:hover,.chatbtn:hover,.sndbtn:hover{
+    transition: all .4s ease-in-out;
+    transform: scale(1.2);
 }

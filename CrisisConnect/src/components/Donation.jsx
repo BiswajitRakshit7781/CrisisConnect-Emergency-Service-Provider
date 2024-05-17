@@ -27,7 +27,7 @@ const Donation = () => {
         </div>
       }
       {btnVisible &&
-      <div onClick={buttonHide} className='absolute bottom-12 left-2/4'>
+      <div onClick={buttonHide} className='donbtn absolute bottom-12 left-2/4'>
           <button className="bg-green-300 border-none rounded-xl w-24 h-12 shadow-xl shadow-slate-800 cursor-pointer"><h3>Donate US</h3></button>
       </div>}
     </>

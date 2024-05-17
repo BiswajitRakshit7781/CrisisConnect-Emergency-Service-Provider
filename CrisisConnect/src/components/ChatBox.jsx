@@ -34,7 +34,7 @@ const ChatBox = () => {
                     </div>
                 </div>
             }
-            {btnVisible && <button onClick={buttonHide} className='bg-blue-300 border-none rounded-xl w-24 h-12 shadow-xl shadow-slate-800 cursor-pointer'><h3>Chat Now</h3></button>}
+            {btnVisible && <button onClick={buttonHide} className='bg-blue-300 chat border-none rounded-xl w-24 h-12 shadow-xl shadow-slate-800 cursor-pointer'><h3>Chat Now</h3></button>}
         </div>
     )
 }

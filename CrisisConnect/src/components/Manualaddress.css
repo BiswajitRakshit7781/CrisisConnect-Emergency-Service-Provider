@@ -33,7 +33,6 @@
     border-radius: 18px;
     background-color: red;
     color: ghostwhite;
-    
 }
 .sheetform{
     display: flex;
@@ -78,4 +77,8 @@
     color: ghostwhite;
     background-color: brown;
     margin-top: 15px;
+}
+.butons button[type=submit]:hover,.sheetnav button:hover{
+    transition: all .4s ease-in-out;
+    transform: scale(1.2);
 }
