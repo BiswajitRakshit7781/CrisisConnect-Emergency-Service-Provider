@@ -37,7 +37,9 @@ const Manual_address = (title) => {
       </div>
       <form className='sheetform' onSubmit={handleSubmit(onSubmit)}>
         <div className="homediv">
+          <h3>
           {title.hservice}
+          </h3>
         </div>
         <div className="homediv">
           <label htmlFor="haddress">

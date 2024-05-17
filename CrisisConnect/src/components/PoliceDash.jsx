@@ -106,10 +106,10 @@ const PoliceDash = () => {
       </main>
       {locationfound && <Confirmrequest city={serviceInfo.components.suburb} state={serviceInfo.components.state} pincode={serviceInfo.components.postcode} address={serviceInfo.formatted} district={serviceInfo.components.
         state_district} flag={setLocationfound} query={coordinateQuery} />}
-      <div className="sheet"></div>
       <Logout_page />
-      <Manual_address hservice={"Police"} />
       <Footer />
+      <Manual_address hservice={"Police"} />
+      <div className="sheet"></div>
     </>
   )
 }
