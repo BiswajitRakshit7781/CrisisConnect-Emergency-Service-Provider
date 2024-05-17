@@ -36,6 +36,7 @@ const Manual_address = (title) => {
         <button onClick={hide_page}>Cancel</button>
       </div>
       <form className='sheetform' onSubmit={handleSubmit(onSubmit)}>
+      {isSubmitting && <div className='loading top-28'></div>}
         <div className="homediv">
           <h3>
           {title.hservice}
