@@ -15,13 +15,16 @@ app.use(express.json());
 app.use(bodyParser.json())
 const client=mongoose.connect('mongodb://0.0.0.0:27017/CrisisConnect').then((val)=>{
     console.log('connected')
-})  
-app.get('/',(req,res)=>{
-res.send("hello world!!")
 })
 const log_stat={email:false,password:false,name:null,email_val:null}
 const admin_log_stat={email:false,password:false}
-
+const chat={current:null}
+const setchat=(obj,email)=>{
+  obj.current=email
+}
+app.get('/',(req,res)=>{
+res.send("hello world!!")
+})
 const set_logout=(obj)=>{
   obj.email=false
   obj.password=false
@@ -220,19 +223,60 @@ app.post("/regitered-services",async (req,res)=>{
   res.send(seekers)
 })
 app.post("/chat-post",async (req,res)=>{
-  if(log_stat.email && log_stat.password){
-  const msg=await messege.findOne({email:log_stat.email_val})
+  let email_tobefind=''
+  if(req.body.sender==='admin'){
+    if(admin_log_stat.email && admin_log_stat.password){
+      email_tobefind=chat.current
+    }
+  }
+  else if(req.body.sender='user'){
+    if(log_stat.email && log_stat.password){
+      email_tobefind=log_stat.email_val
+    }
+  }
+  const msg=await messege.findOne({email:email_tobefind})
   if(msg===null){
-    let new_msg=await new messege({email:log_stat.email_val,Messege:[{sender:req.body.sender,messege:req.body.messege}]})
+    let new_msg=await new messege({email:email_tobefind,Messege:[{sender:req.body.sender,messege:req.body.messege}]})
     await new_msg.save()
   }
   else{
-    let all_msg=await messege.findOne({email:log_stat.email_val})
-    all_msg.Messege.push({sender:req.body.sender,messege:req.body.messege})
-    await messege.findOneAndUpdate({email:log_stat.email_val},{Messege:all_msg.Messege})
+    let all_msg=await messege.findOne({email:email_tobefind})
+    let x=all_msg.Messege
+    x.push({sender:req.body.sender,messege:req.body.messege})
+    await messege.findOneAndUpdate({email:email_tobefind},{Messege:x})
   }
   res.send({chat:true})
-}
+})
+app.post("/chat-get",async (req,res)=>{
+  let email_tobefind=''
+  if(req.body.sender=='admin'){
+    if(admin_log_stat.email && admin_log_stat.password){
+     email_tobefind=chat.current
+    }
+  }
+  else if(req.body.sender='user'){
+    if(log_stat.email && log_stat.password)
+     email_tobefind=log_stat.email_val
+  }
+    let messeges=await messege.findOne({email:email_tobefind})
+    if(messeges !== null)
+    res.send({chat:true,messege:messeges.Messege})
+    else
+    res.send({chat:false})
+})
+app.get("/get_messege_email",async (req,res)=>{
+  let emails=await messege.find({})
+  res.send(emails)
+})
+app.post("/session-chat-email",(req,res)=>{
+  try{
+    let email=req.body.email
+    setchat(chat,email)
+    res.send(true)
+  }
+  catch(error){
+    res.send(false)
+  }
 })
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);

@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom'
 import Adminlogout from './Adminlogout'
 import { useEffect,useState } from 'react'
 import "./logout.css"
+import Selectiom from './selectiom'
 import ChatBox from './ChatBox'
+import Select_render from './Select_render'
 const AdminDashboard = () => {
   useEffect(()=>{
     const wait=async ()=>{
@@ -17,6 +19,8 @@ const AdminDashboard = () => {
     }
     wait()
   },[])
+  const [selected,setSelected]=useState(false)
+  const [selectionvisible,setSelectionvisible]=useState(false)
   const navigate = useNavigate();
   const set_logout=()=>{
     let log_out=document.getElementById("logout-page")
@@ -64,8 +68,10 @@ const AdminDashboard = () => {
       </main>
       <Adminlogout/>
       <div className="sheet"></div>
+      {!selectionvisible && <Select_render renderfunc={setSelectionvisible}/>}
+      {!selected && selectionvisible && (<Selectiom selection={setSelected} unselect={setSelectionvisible}/>)}
+      {selected &&  <ChatBox sender={"admin"} selection={setSelected}/>}
       <Footer />
-      <ChatBox/>
     </>
   )
 }

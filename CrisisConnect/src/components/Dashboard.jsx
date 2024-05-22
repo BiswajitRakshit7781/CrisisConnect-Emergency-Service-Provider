@@ -69,7 +69,7 @@ const Dashboard = () => {
       <Logout_page />
       <div className="sheet"></div>
       <Footer />
-      <ChatBox />
+      <ChatBox sender={"user"}/>
       <Donation/>
     </>
   )
