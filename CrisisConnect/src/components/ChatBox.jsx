@@ -7,7 +7,6 @@ const ChatBox = ( title ) => {
     const [message, setMessage] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [btnVisible, setBtnVisible] = useState(true);
-
     useEffect(() => {
             getAllMessages();
             setMessage(false);
@@ -83,8 +82,8 @@ const ChatBox = ( title ) => {
                     {isVisible && (
                         <div className="chatbox h-96 w-80 bg-white">
                             <div className="chatbox-header flex items-center justify-between px-4 py-2 mb-2 border-b bg-blue-300">
-                              {isadmin.current && <button onClick={back_to_selection} className="text-red-700 back-btn">
-                                    back
+                              {isadmin.current && <button onClick={back_to_selection} className="backbtn">
+                              back
                                 </button>}
                                 <h3>Chat</h3>
                                 <button onClick={handleHideAlert} className="text-red-700 chatbtn">

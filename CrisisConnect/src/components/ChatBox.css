@@ -59,6 +59,20 @@
     border: none;
     cursor: pointer;
 }
+.backbtn{
+    height: 5vh;
+    width: 4vw;
+    border-radius: 10%;
+    border: none;
+    color: white;
+    background: linear-gradient(120deg,black,rgb(112, 103, 103));
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.15s ease-in-out;
+}
+.backbtn:hover{
+    transform: scale(1.05);
+}
 .chat:hover,.chatbtn:hover,.sndbtn:hover{
     transition: all .4s ease-in-out;
     transform: scale(1.2);
