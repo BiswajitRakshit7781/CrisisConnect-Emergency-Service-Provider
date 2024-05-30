@@ -23,17 +23,17 @@ const Home = () => {
     },10)
   },[])
   const handel_turn=(event)=>{
-    // console.log(event.clientX)
-    if(event.clientX>100 && event.clientX<=348){
+    service.current.style.transition='0.3s ease-in-out'
+    if(event.clientX>90 && event.clientX<=348){
       service.current.style.transform=`rotate3d(0, 1, 0, ${0.1}turn)`
     }
     else if(event.clientX>348 && event.clientX<=700){
       service.current.style.transform=`rotate3d(0, 1, 0, ${0.1}turn)`
     }
-    else if(event.clientX>700 && event.clientX<=1000){
+    else if(event.clientX>700 && event.clientX<=950){
       service.current.style.transform=`rotate3d(0, 1, 0, ${-0.1}turn)`
     }
-    else if(event.clientX>1000 && event.clientX<=1170){
+    else if(event.clientX>951 && event.clientX<=1350){
       service.current.style.transform=`rotate3d(0, 1, 0, ${-0.1}turn)`
     }
   }

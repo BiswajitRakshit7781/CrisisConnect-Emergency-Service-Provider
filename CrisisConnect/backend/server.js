@@ -19,6 +19,8 @@ const client=mongoose.connect('mongodb://0.0.0.0:27017/CrisisConnect').then((val
 const log_stat={email:false,password:false,name:null,email_val:null}
 const admin_log_stat={email:false,password:false}
 const chat={current:null}
+const otp_info={}
+const verify_status={email_matched:false,otp_matched:false}
 const setchat=(obj,email)=>{
   obj.current=email
 }
@@ -39,6 +41,20 @@ const geo_code=async (latitude,longitude)=>{
   let f=await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${latitude}%2C${longitude}&key=f5ec9f0dc41d40498e09d0421f507c4a`)
   let res=await f.json()
   return res
+}
+function generateOtp(){
+  let num=0
+  for(let i=0;i<4;i++){
+    num=num*10+Math.floor(Math.random()*9)
+  }
+  return num
+}
+function unverify_otp(obj){
+  obj.email_matched=false
+  obj.otp_matched=false
+}
+function empty_email_otp(obj,str){
+  delete obj[str]
 }
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
@@ -268,9 +284,61 @@ app.get("/get_messege_email",async (req,res)=>{
   let emails=await messege.find({})
   res.send(emails)
 })
+app.post("/generate-otp",async (req,res)=>{
+  let email_for_otp=req.body.otpemail
+  let email_present=await registered_users.findOne({email:email_for_otp})
+  if(email_present!==null){
+    let otp=generateOtp()
+    let requestMailOptions={
+      from: mailOptions.form,
+      to: email_for_otp,
+      subject: "Crisist Connect otp confirmation",
+      text: `your one time password is ${otp} valid for 3 min`
+    }
+    transporter.sendMail(requestMailOptions,(error,info)=>{
+      if(error){
+        res.send("error sending mail")
+      }
+      else{
+        res.send('check your email for otp')
+        otp_info[`${email_for_otp}`]=otp
+      }
+    })
+  }
+  else{
+    res.send('email not registered or invalid email')
+  }
+})
+app.post("/verify-otp",async (req,res)=>{
+  let otp=parseInt(req.body.otp)
+  let email=req.body.otpemail
+  for(let i=0;i<Object.keys(otp_info).length;i++){
+    if(email===Object.keys(otp_info)[0]){
+      verify_status.email_matched=true
+      if(otp===otp_info[`${email}`]){
+        verify_status.otp_matched=true
+      }
+    }
+  }
+  res.send(verify_status)
+})
+app.post("/update-password",async (req,res)=>{
+  let new_password=req.body.otppassword
+  let email_for_otp=req.body.otpemail
+  let update_stat={updatedone:false}
+  if(verify_status.email_matched && verify_status.otp_matched){
+    let updatepass=await registered_users.findOneAndUpdate({email:email_for_otp},{password:new_password})
+    if(updatepass!==null)
+    update_stat.updatedone=true
+    unverify_otp(verify_status)
+    empty_email_otp(otp_info,email_for_otp)
+    console.log(otp_info)
+  }
+  res.send(update_stat)
+})
 app.post("/session-chat-email",(req,res)=>{
   try{
-    let email=req.body.email
+    let email=req.body.email/
     setchat(chat,email)
     res.send(true)
   }

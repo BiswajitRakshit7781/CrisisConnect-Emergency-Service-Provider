@@ -4,6 +4,7 @@
 }
 
 .loginform {
+    position: relative;
     padding-top: 50px;
     border: 2px solid black;
     height: 55vh;
@@ -22,7 +23,7 @@ form {
 .lgform>input[type=email],.lgform>input[type=number],
 .lgform>input[type=password] {
     width: 80%;
-    height: 12%;
+    height: 15%;
     border: none;
     border-radius: 10px;
     padding-left: 5%;
@@ -33,8 +34,20 @@ form {
 .lgform>input[type=password]::placeholder {
     color: #0f0f0f;
 }
-
-.lgform>input[type=submit],.otp,.verify {
+.lgform>input[name=otpemail],.lgform>input[name=otp],.lgform>input[name=otppassword]{
+    width: 62%;
+    height: 9%;
+   position: absolute;
+   top: 25%;
+   left: 17%;
+}
+.lgform>input[name=otp]{
+    top: 50%;
+ }
+ .lgform>input[name=otppassword]{
+    top: 75%;
+ }
+.lgform>input[type=submit],.otp,.verify,.savechange{
     width: 35%;
     height: 12%;
     background-color: #0f0f0f;
@@ -44,8 +57,31 @@ form {
     cursor: pointer;
     box-shadow: black 4px 4px 10px;
 }
-
-input[type=submit]:hover,.otp:hover , .verify:hover{
+.otp{
+  position: absolute;
+  top: 38%;
+  left: 36.5%;
+  height: 7.5%;
+  width: 28%;
+}
+.verify,.savechange{
+  position: absolute;
+  top: 62%;
+  left: 36.5%;
+  height: 7.5%;
+  width: 28%;
+}
+.savechange{
+    top: 87%;
+  height: 7.7%;
+  font-size: 1.3em;
+}
+.fogpasshead{
+    position: absolute;
+    top: 5%;
+    left: 26%;
+}
+input[type=submit]:hover,.otp:hover , .verify:hover,.savechange:hover{
     transition: all .4s ease-in-out;
     transform: scale(1.05);
 }

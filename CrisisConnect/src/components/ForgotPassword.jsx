@@ -2,9 +2,11 @@ import React, { useState } from 'react'
 import Footer from './Footer'
 import { NavLink } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import "./Login.css"
 
 const ForgotPassword = () => {
+    const navigate=useNavigate()
     const {
         register,
         handleSubmit,
@@ -14,12 +16,53 @@ const ForgotPassword = () => {
     } = useForm()
 
     const [isVisible, setIsVisible] = useState(true);
+    const [sendingotp,setSendindotp] = useState(false)
 
     const handleHideAlert = () => {
         setIsVisible(false);
         clearErrors();
     };
-
+   const get_otp=async()=>{
+    let obj={otpemail:document.getElementById('otpemail').value}
+    let res=await fetch("http://localhost:5000/generate-otp",{method:"POST",headers:{
+        'Content-Type': 'application/json'
+    },body: JSON.stringify(obj)})
+    let otp=await res.text()
+    alert(otp)
+   }
+   const verify_otp=async ()=>{
+    let obj={otpemail:document.getElementById('otpemail').value,otp: document.getElementById('otp').value }
+    let res=await fetch("http://localhost:5000/verify-otp",{method:"POST",headers:{
+        'Content-Type': 'application/json'
+    },body: JSON.stringify(obj)})
+    let verify_status=await res.json()
+    if(verify_status.email_matched){
+        if(verify_status.otp_matched){
+            alert('otp verified sucessfully')
+            alert('create new password')
+        }
+        else{
+            alert('otp didn\'t matched')
+        }
+    }
+    else{
+        alert('Click on send otp button for receiving otp')
+    }
+   }
+   const onSubmit=async ()=>{
+    let obj={otpemail: document.getElementById('otpemail').value,otp: document.getElementById('otp').value,password: document.getElementById('password').value}
+    let res=await fetch("http://localhost:5000/update-password",{method:"POST",headers:{
+        'Content-Type': 'application/json'
+    },body: JSON.stringify(obj)})
+    let r=await res.json()
+    if(r.updatedone){
+        alert('password changed successfully')
+        navigate('/login')
+    }
+    else{
+        alert("problem changing password")
+    }
+   }
     return (
         <>
             <nav className='flex justify-between items-center fixed'>
@@ -35,7 +78,7 @@ const ForgotPassword = () => {
             <main className='lgbg flex flex-col justify-center items-center'>
 
                 <div id='alert' className="alert flex w-full flex-col items-center">
-                    {errors.email && isVisible && (
+                    {errors.otpemail && isVisible && (
                         <div>
                             <p>Email ID is required !</p>
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
@@ -47,7 +90,7 @@ const ForgotPassword = () => {
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
                         </div>
                     )}
-                    {errors.password && isVisible && (
+                    {errors.otppassword && isVisible && (
                         <div>
                             <p>{errors.password.message}</p>
                             <button onClick={handleHideAlert} className='closebtn'>X</button>
@@ -56,20 +99,18 @@ const ForgotPassword = () => {
                 </div>
 
                 <div className="loginform flex flex-col items-center gap-9 ">
-                    <h1>Forgot Password</h1>
-                    <form className='lgform flex flex-col gap-5 items-center justify-center'>
-                        <input type="email" {...register("email", { required: true })} placeholder='Enter Your Email Address' />
+                    <h1 className='fogpasshead'>Forgot Password</h1>
+                    <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
+                        <input id='otpemail' type="email" {...register("otpemail", { required: true })} placeholder='Enter Your Email Address' />
 
-                        <button className='otp'>Send OTP</button>
+                        <input id='otp' type="number" {...register("otp", { required: { value: true, message: "OTP is required !" }, minLength: { value: 4, message: "Minimum 4 Character required" } })} placeholder='Enter Your OTP'  />
 
-                        <input type="number" {...register("otp", { required: { value: true, message: "OTP is required !" }, minLength: { value: 6, message: "Minimum 6 Character required" } })} placeholder='Enter Your OTP' />
+                        <input id='password' type="password" {...register("otppassword", { required: { value: true, message: "Password is required !" }, minLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder='Set New Password' />
 
-                        <button className="verify">Verify</button>
-
-                        <input type="password" {...register("password", { required: { value: true, message: "Password is required !" }, minLength: { value: 8, message: "Minimum 8 Character required" } })} placeholder='Set New Password' />
-
-                        <input type="submit" value="Save" />
+                        <button type="submit" className='savechange'>Save</button>
                     </form>
+                    <button className='otp' onClick={get_otp}>Send OTP</button>
+                    <button className="verify" onClick={verify_otp}>Verify</button>
                 </div>
             </main>
             <Footer />

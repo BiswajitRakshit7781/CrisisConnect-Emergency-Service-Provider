@@ -1,5 +1,5 @@
 let mailOptions = {
-    from: '',  // sender address
+    from: 'esp.crisisconnect@gmail.com',  // sender address
     // subject: 'Hello from Node.js',  // Subject line
     // text: 'Thanks for choosing crisis connect',  // plain text body
     // You can also use HTML in the email body
