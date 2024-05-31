@@ -81,6 +81,15 @@ form {
     top: 5%;
     left: 26%;
 }
+.senotp,#timeout{
+    position: absolute;
+    top: 17%;
+    left: 42%;
+    color: blue;
+}
+#timeout{
+    left: 37%;
+}
 input[type=submit]:hover,.otp:hover , .verify:hover,.savechange:hover{
     transition: all .4s ease-in-out;
     transform: scale(1.05);

@@ -56,6 +56,11 @@ function unverify_otp(obj){
 function empty_email_otp(obj,str){
   delete obj[str]
 }
+function empty_email_otp_timeout(obj,str){
+  setTimeout(() => {
+    empty_email_otp(obj,str)
+  }, 180 * 1000);
+}
 app.post('/createAccount', async (req, res) => {
   let u_fullname=req.body.name
   let u_sex=req.body.sex
@@ -302,6 +307,7 @@ app.post("/generate-otp",async (req,res)=>{
       else{
         res.send('check your email for otp')
         otp_info[`${email_for_otp}`]=otp
+        empty_email_otp_timeout(otp_info,email_for_otp)
       }
     })
   }
@@ -313,7 +319,7 @@ app.post("/verify-otp",async (req,res)=>{
   let otp=parseInt(req.body.otp)
   let email=req.body.otpemail
   for(let i=0;i<Object.keys(otp_info).length;i++){
-    if(email===Object.keys(otp_info)[0]){
+    if(email===Object.keys(otp_info)[i]){
       verify_status.email_matched=true
       if(otp===otp_info[`${email}`]){
         verify_status.otp_matched=true
