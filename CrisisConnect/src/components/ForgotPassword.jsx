@@ -92,6 +92,7 @@ const ForgotPassword = () => {
             if (verify_status.otp_matched) {
                 alert('otp verified successfully');
                 alert('create new password');
+                setDisptimeout(false)
             } else {
                 alert('otp didn\'t match');
             }

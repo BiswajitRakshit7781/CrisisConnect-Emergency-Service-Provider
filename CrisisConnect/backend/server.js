@@ -91,6 +91,7 @@ app.post('/createAccount', async (req, res) => {
   transporter.sendMail(mailOptions,(error,info)=>{
     if(error){
       res.send("error")
+      console.log("error sending mail")
     }
     else
     console.log("sent successfully")
