@@ -98,8 +98,14 @@ const Login = () => {
                     </div>
 
                 <div className="loginform flex flex-col items-center gap-9 ">
-                    <h1>Login</h1>
-                    {isSubmitting && <div className='loading top-28'></div>}
+                    <h1 className='log-head'>Login</h1>
+                    {isSubmitting && <div className='loader'>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__ball"></div></div>}
 
                     <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
 

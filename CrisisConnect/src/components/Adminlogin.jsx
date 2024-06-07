@@ -91,8 +91,14 @@ const Adminlogin = () => {
                 </div>
 
                 <div className="loginform flex flex-col items-center gap-12">
-                    <h1>Admin Login</h1>
-                    {isSubmitting && <div className='loading top-28'></div>}
+                    <h1 className='log-head'>Admin Login</h1>
+                    {isSubmitting && <div className='loader'>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__bar"></div>
+                        <div className="loader__ball"></div></div>}
                     <form className='lgform flex flex-col gap-5 items-center justify-center' onSubmit={handleSubmit(onSubmit)}>
                         <input type="email" {...register("email", { required: true })} placeholder="Enter Email Address" />
 
