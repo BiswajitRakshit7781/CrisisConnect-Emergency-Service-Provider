@@ -25,7 +25,7 @@ const Adminlogin = () => {
     const [login, setLogin] = useState(false)
     const navigate = useNavigate()
     const onSubmit = async (data) => {
-        await delay(2)
+        await delay(1.2)
         let res = await fetch("http://localhost:5000/admin-login", {
             method: "POST", headers: {
                 'Content-Type': 'application/json'

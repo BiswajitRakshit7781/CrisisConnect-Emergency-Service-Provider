@@ -33,7 +33,7 @@ const Manual_address = (title) => {
         <div className="head">
           Fill in the boxes with correct info
         </div>
-        <button onClick={hide_page}>Cancel</button>
+        <button className='cancel-address' onClick={hide_page}>X</button>
       </div>
       <form className='sheetform' onSubmit={handleSubmit(onSubmit)}>
       {isSubmitting && <div className='loading top-28'></div>}

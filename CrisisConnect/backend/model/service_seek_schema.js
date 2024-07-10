@@ -10,7 +10,8 @@ const service=mongoose.Schema({
     suburb:String,
     fullfilled:Boolean,
     service:String,
-    district:String
+    district:String,
+    coordinates:String
 })
 const requestService=mongoose.model("requestService",service)
 export default requestService

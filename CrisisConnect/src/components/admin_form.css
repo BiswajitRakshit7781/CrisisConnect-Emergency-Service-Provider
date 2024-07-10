@@ -1,0 +1,8 @@
+.Searching{
+    position:absolute;
+    bottom: 10%;
+    left: 35%;
+    border: 2px solid firebrick;
+    width: 40vw;
+    height: 10vh;
+}

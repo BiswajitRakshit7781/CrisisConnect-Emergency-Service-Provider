@@ -8,6 +8,7 @@ import mailOptions from './model/mailOptions.js';
 import admin from './model/admin_schema.js';
 import service from './model/service_seek_schema.js';
 import messege from './model/messege_schema.js';
+import axios from 'axios';
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors())
@@ -149,6 +150,7 @@ app.get("/admin-logout",(req,res)=>{
 app.post("/request-service",async (req,res)=>{
   let latitude=req.body.Latitude
   let longitude=req.body.Longitude
+  let coordinate=latitude.toString() + " N," + longitude.toString() +" S"
   let problem=req.body.service
   let confirm=req.body.isconfirm
   let obj=await geo_code(latitude,longitude)
@@ -167,7 +169,8 @@ app.post("/request-service",async (req,res)=>{
       suburb:obj.results[0].components.suburb,
       fullfilled:false,
       service:problem,
-      district:obj.results[0].components.state_district})
+      district:obj.results[0].components.state_district,
+      coordinates:coordinate});
       await serve.save()
       console.log("service created")
       let requestMailOptions = {
@@ -316,6 +319,31 @@ app.post("/generate-otp",async (req,res)=>{
     res.send('email not registered or invalid email')
   }
 })
+app.post("/find_keyplaces",async (req,res)=>{
+  async function findNearestPlace(lat, lng, query) {
+    try {
+      const response = await axios.get("https://nominatim.openstreetmap.org/search", {
+        params: {
+          q: query,
+          format: "json",
+          limit: 2,
+          viewbox: `${lng-0.2},${lat+0.2},${lng+0.2},${lat-0.2}`,
+          bounded: 1
+        }
+      });
+  
+      return response.data;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  findNearestPlace(parseFloat(req.body.lat),parseFloat(req.body.lng), req.body.type)
+    .then(results => {
+      console.log(results[0])
+      res.send(results[0])})
+    .catch(err => res.send(err));
+  
+})
 app.post("/verify-otp",async (req,res)=>{
   let otp=parseInt(req.body.otp)
   let email=req.body.otpemail
@@ -345,7 +373,7 @@ app.post("/update-password",async (req,res)=>{
 })
 app.post("/session-chat-email",(req,res)=>{
   try{
-    let email=req.body.email/
+    let email=req.body.email
     setchat(chat,email)
     res.send(true)
   }
