@@ -3,6 +3,7 @@ import { useEffect,useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Footer from './Footer'
 import './Home.css'
+import './Mobile.css'
 import { NavLink } from 'react-router-dom'
 
 const Home = () => {
