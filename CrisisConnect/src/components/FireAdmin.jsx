@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useRef,useState,useEffect } from 'react'
 import Adminlogout from './Adminlogout'
 import "./logout.css"
+import "./table.css"
 const FireAdmin = (title) => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
@@ -42,11 +43,12 @@ const checkLogin=async ()=>{
   sheet.style.display="block"
  }
  const find_place_redirection=(e)=>{
-     navigate("/find-nearest-place")
      let arr=e.target.parentElement.getElementsByClassName('coords')[0].innerHTML.split(',')
      let longi=arr[1].slice(0,-1)
      let lati=arr[0].slice(0,-1)
      title.modifyCoordinate({lat:lati,lng:longi})
+     title.service('fire_station')
+     navigate("/find-nearest-place")
  }
   return (
     <>
@@ -61,8 +63,8 @@ const checkLogin=async ()=>{
         <div className="welcome flex justify-center pt-32">
           <h1>Fire Support</h1>
         </div>
-        <div className="tablebody ">
-            <table className='tab'>
+        <div className="tablebody">
+            <table className='tab tabserve'>
                 <thead className='tablecontent sticky top-0'>
                     <tr>
                     <th className='user'><h4>User Name</h4></th>

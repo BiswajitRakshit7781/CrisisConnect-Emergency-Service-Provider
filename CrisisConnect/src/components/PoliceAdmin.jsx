@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { useRef,useState,useEffect } from 'react'
 import Adminlogout from './Adminlogout'
 import "./logout.css"
-const PoliceAdmin = () => {
+import "./table.css"
+const PoliceAdmin = (title) => {
   const [victim,setVictim]=useState([])
   useEffect(()=>{
     const wait=async ()=>{
@@ -41,6 +42,14 @@ const checkLogin=async ()=>{
   log_out.style.display="flex"
   sheet.style.display="block"
  }
+ const find_place_redirection=(e)=>{
+  let arr=e.target.parentElement.getElementsByClassName('coords')[0].innerHTML.split(',')
+  let longi=arr[1].slice(0,-1)
+  let lati=arr[0].slice(0,-1)
+  title.modifyCoordinate({lat:lati,lng:longi})
+  title.service('police')
+  navigate("/find-nearest-place")
+}
   return (
     <>
       <nav className="flex justify-between items-center fixed">
@@ -65,12 +74,13 @@ const checkLogin=async ()=>{
                     <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>District</h4></th>
                     <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>State</h4></th>
                     <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Pin-Code</h4></th>
+                    <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Coords</h4></th>
                     <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>Time</h4></th>
               </tr>
             </thead>
             <tbody className='bg-white'>
             {victim.map((key)=>{
-              return(<tr key={key._id}>
+              return(<tr key={key._id} onClick={find_place_redirection}>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.name}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.email}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.phone}</td>
@@ -78,6 +88,7 @@ const checkLogin=async ()=>{
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.district}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.state}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500">{key.pincode}</td>
+                <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500 coords">{key.coordinates==undefined?'00,00':key.coordinates}</td>
                 <td className="px-6 py-4 text-center whitespace-nowrap text-gray-500"> {key.req_time}</td>
               </tr>)
               })}

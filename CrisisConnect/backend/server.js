@@ -320,28 +320,68 @@ app.post("/generate-otp",async (req,res)=>{
   }
 })
 app.post("/find_keyplaces",async (req,res)=>{
-  async function findNearestPlace(lat, lng, query) {
-    try {
-      const response = await axios.get("https://nominatim.openstreetmap.org/search", {
-        params: {
-          q: query,
-          format: "json",
-          limit: 2,
-          viewbox: `${lng-0.2},${lat+0.2},${lng+0.2},${lat-0.2}`,
-          bounded: 1
-        }
-      });
+  // async function findNearestPlace(lat, lng, query) {
+    // try {
+    //   const response = await axios.get("https://nominatim.openstreetmap.org/search", {
+    //     params: {
+    //       q: query,
+    //       format: "json",
+    //       limit: 2,
+    //       viewbox: `${lng-0.2},${lat+0.2},${lng+0.2},${lat-0.2}`,
+    //       bounded: 1
+    //     }
+    //   });
   
-      return response.data;
-    } catch (error) {
-      console.error(error);
+    //   return response.data;
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  // }
+
+// Define the search radius (in meters)
+let radius
+req.body.type==='fire_station' || req.body.type==='hospital' ?radius=40000:radius=10000
+// Overpass API query to find restaurants
+const overpassUrl = "http://overpass-api.de/api/interpreter";
+const overpassQuery = `
+[out:json];
+node
+  ["amenity"="${req.body.type}"]
+  (around:${radius},${req.body.lat},${req.body.lng});
+out body;
+`;
+
+async function findNearbyPlaces() {
+  try {
+    const response = await axios.get(overpassUrl, {
+      params: {
+        data: overpassQuery
+      }
+    });
+    const data = response.data;
+    // Extract relevant information
+    if (data.elements) {
+      data.elements.forEach(element => {
+        const name = element.tags?.name || 'No name available';
+        const lat = element.lat;
+        const lon = element.lon;
+      });
+      res.send(data.elements)
+    } else {
+      console.log('No results found');
     }
+  } catch (error) {
+    console.error('Error fetching data from Overpass API:', error);
   }
-  findNearestPlace(parseFloat(req.body.lat),parseFloat(req.body.lng), req.body.type)
-    .then(results => {
-      console.log(results[0])
-      res.send(results[0])})
-    .catch(err => res.send(err));
+}
+
+findNearbyPlaces();
+
+  // findNearestPlace(parseFloat(req.body.lat),parseFloat(req.body.lng), req.body.type)
+  //   .then(results => {
+  //     console.log(results[0])
+  //     res.send(results[0])})
+  //   .catch(err => res.send(err));
   
 })
 app.post("/verify-otp",async (req,res)=>{

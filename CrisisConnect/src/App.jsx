@@ -18,12 +18,15 @@ import MedicineAdmin from './components/MedicineAdmin';
 import ForgotPassword from './components/ForgotPassword';
 import Admin_form from './components/admin_form';
 import CoordContext from './context/coordinates/coordsContext';
+import ServiceContext from './context/service/serviceRoute';
 import { useState } from 'react';
 function App() {
   const [coordinate,SetCoordinate]=useState({lat:0,lng:0})
+  const [service,Setservice]=useState(null)
   return (
     <>
     <CoordContext.Provider value={coordinate}>
+      <ServiceContext.Provider value={service}>
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,14 +40,15 @@ function App() {
         <Route path="/hospital" element={<HospitalDash />} />
         <Route path="/medicine" element={<MedicineDash />} />
         <Route path="/fire" element={<FireDash />} />
-        <Route path="/fireadmin" element={<FireAdmin modifyCoordinate={SetCoordinate}/>} />
-        <Route path="/policeadmin" element={<PoliceAdmin />} />
-        <Route path="/hospitaladmin" element={<HospitalAdmin />} />
-        <Route path="/medicineadmin" element={<MedicineAdmin />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/fireadmin" element={<FireAdmin modifyCoordinate={SetCoordinate} service={Setservice}/>} />
+        <Route path="/policeadmin" element={<PoliceAdmin modifyCoordinate={SetCoordinate} service={Setservice}/>} />
+        <Route path="/hospitaladmin" element={<HospitalAdmin modifyCoordinate={SetCoordinate} service={Setservice}/>} />
+        <Route path="/medicineadmin" element={<MedicineAdmin modifyCoordinate={SetCoordinate} service={Setservice}/>} />
+        <Route path="/forgotpassword" element={<ForgotPassword modifyCoordinate={SetCoordinate} service={Setservice}/>} />
         <Route path="/find-nearest-place" element={<Admin_form/>} />
       </Routes>
     </Router>
+    </ServiceContext.Provider>
     </CoordContext.Provider>
     </>
   );
