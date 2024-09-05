@@ -64,7 +64,7 @@ const checkLogin=async ()=>{
           <h1>Medicine Support</h1>
         </div>
         <div className="overflow-x-auto pt-10">
-          <table className='table-auto min-w-full'>
+          <table className='table-auto min-w-full tabserve'>
             <thead className='sticky top-0 bg-white'>
               <tr>
               <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>User Name</h4></th>

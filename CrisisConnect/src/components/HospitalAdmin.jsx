@@ -45,8 +45,8 @@ const checkLogin=async ()=>{
  }
  const find_place_redirection=(e)=>{
   let arr=e.target.parentElement.getElementsByClassName('coords')[0].innerHTML.split(',')
-  let longi=arr[1].slice(0,-1)
-  let lati=arr[0].slice(0,-1)
+  let longi=arr[1].slice(0,arr[1].length)
+  let lati=arr[0].slice(0,arr[0].length)
   title.modifyCoordinate({lat:lati,lng:longi})
   title.service('hospital')
   navigate("/find-nearest-place")
@@ -65,7 +65,7 @@ const checkLogin=async ()=>{
           <h1>Hospital Support</h1>
         </div>
         <div className="overflow-x-auto pt-10">
-          <table className='table-auto min-w-full'>
+          <table className='table-auto min-w-full tabserve'>
             <thead className='sticky top-0 bg-white'>
               <tr>
               <th className='px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider'><h4>User Name</h4></th>

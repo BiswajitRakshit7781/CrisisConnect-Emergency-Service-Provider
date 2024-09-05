@@ -51,12 +51,13 @@
     align-items: center;
     flex-direction: column;
     /* gap: 5px; */
-    height: 85%;
+    height: 90%;
     width: 100%;
     border: none;
     font-size: 18px;
     margin-top: 10px;
     /* border: 1px solid; */
+    overflow-y: scroll;
 }
 .homediv{
     display: flex;
@@ -68,7 +69,7 @@
 }
 .homediv input[type=text],.homediv select,.homediv label, .homediv input[type=number] {
     width: 85%;
-    height: 35px;
+    height: 50%;
     border: none;
     border-radius: 10px;
 }
@@ -77,6 +78,7 @@
     color: rgb(107, 81, 81);
 }
 .butons button[type=submit]{
+    /* position: absolute; */
     width: 8vw;
     height: 45px;
     border: none;

@@ -5,6 +5,7 @@ import Footer from './Footer'
 import './Home.css'
 import './Mobile.css'
 import { NavLink } from 'react-router-dom'
+import { set } from 'mongoose'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,6 +23,41 @@ const Home = () => {
       service.current.style.transform=`rotate3d(0, 1, 0, ${0}turn)`
       }
     },10)
+  console.log(admin_button.current)
+  console.log(home.current)
+  const callback=(entries,observer)=>{
+      entries.forEach(async (element) => {
+        if(!element.isIntersecting){
+          admin_button.current.style.height='0';
+          admin_button.current.style.width='0';
+          admin_button.current.style.fontSize='0';
+          await new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve()
+            },150)
+          })
+          admin_button.current.style.display='none';
+
+        }
+        else{
+          admin_button.current.style.display='block';
+          await new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve()
+            },150)
+          })
+          admin_button.current.style.height='7vh';
+          admin_button.current.style.width='7vw';
+          admin_button.current.style.fontSize='1.3em';
+        }
+      });
+  }
+  const observer=new IntersectionObserver(callback,{
+    root:null,
+    rootMargin:'0px',
+    threshold:0.07
+  })
+  observer.observe(home.current)
   },[])
   const handel_turn=(event)=>{
     service.current.style.transition='0.3s ease-in-out'
@@ -41,6 +77,11 @@ const Home = () => {
   const neutral_turn=()=>{
     service.current.style.transform=`rotate3d(0, 1, 0, ${0}turn)`
   }
+  function go_admin(){
+    location.href='/admin'
+  }
+  const admin_button=useRef()
+  const home=useRef()
   return (
     <>
       <nav className='flex justify-between items-center fixed'>
@@ -54,7 +95,9 @@ const Home = () => {
         </ul>
       </nav>
       <main className='homemain'>
-        <div id='Home' className="home flex flex-col gap-2 justify-center items-center">
+        <button ref={admin_button} style={{position:'sticky',height:'7vh',width:'7vw',backgroundColor:'#5be7bb',zIndex:'2',top:'10vh',left:'2vw',borderRadius:'5px',border:'none',fontFamily:'-moz-initial',fontSize:'1.3em',cursor:'pointer',transition:'0.1s ease-in-out'}} onClick={go_admin}>Admin</button>
+      
+        <div ref={home} id='Home' className="home flex flex-col gap-2 justify-center items-center">
           <div className="welcometag"><h3>Welcome to</h3></div>
           <div className="banner logo"><h1 className="logo">CrisisConnect</h1></div>
           <div className="tagline"><h3>"Instant Assistance, Endless Support"</h3></div>

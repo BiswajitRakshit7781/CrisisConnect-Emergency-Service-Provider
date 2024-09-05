@@ -28,7 +28,7 @@ const Selectiom = (title) => {
         }
     }
         else{
-            alert("fuck off")
+            alert("plese select")
         }
     }
     const back_off=()=>{

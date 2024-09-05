@@ -52,7 +52,7 @@ const Manual_address = (title) => {
           <label htmlFor="hcountry">
             Country:
           </label>
-          <select {...register("hcountry", { required: true })} placeholder="Country">
+          <select  {...register("hcountry", { required: true })} placeholder="Country">
             <option value="">Country</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Albania">Albania</option>
@@ -170,7 +170,7 @@ const Manual_address = (title) => {
           <input type="text" {...register("hdistrict", { required: true })} placeholder="District" />
         </div>
         <div className="butons">
-          <button disabled={isSubmitting} type='submit'>Confirm</button>
+          <button disabled={isSubmitting} type='submit' style={{position:'relative',bottom:'3vh'}}>Confirm</button>
         </div>
       </form>
     </div>

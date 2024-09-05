@@ -21,7 +21,7 @@ const log_stat={email:false,password:false,name:null,email_val:null}
 const admin_log_stat={email:false,password:false}
 const chat={current:null}
 const otp_info={}
-const verify_status={email_matched:false,otp_matched:false}
+const verify_status=[]
 const setchat=(obj,email)=>{
   obj.current=email
 }
@@ -50,9 +50,8 @@ function generateOtp(){
   }
   return num
 }
-function unverify_otp(obj){
-  obj.email_matched=false
-  obj.otp_matched=false
+function unverify_otp(obj,key_to_del){
+  delete obj[key_to_del]
 }
 function empty_email_otp(obj,str){
   delete obj[str]
@@ -150,7 +149,7 @@ app.get("/admin-logout",(req,res)=>{
 app.post("/request-service",async (req,res)=>{
   let latitude=req.body.Latitude
   let longitude=req.body.Longitude
-  let coordinate=latitude.toString() + " N," + longitude.toString() +" S"
+  let coordinate=latitude.toString() + " N," + longitude.toString() +" E"
   let problem=req.body.service
   let confirm=req.body.isconfirm
   let obj=await geo_code(latitude,longitude)
@@ -205,6 +204,10 @@ app.post("/reqsermanually",async (req,res)=>{
     let now=new Date()
     let user_details=await registered_users.findOne({email:log_stat.email_val})
     try{
+      let x=await  fetch(`https://api.opencagedata.com/geocode/v1/json?q= ${req.body.hcity}+${req.body.hdistrict}+${req.body.hstate}+${req.body.hcountry}&key=f5ec9f0dc41d40498e09d0421f507c4a&pretty=1`)
+     let forgeo=await x.json()
+     let coords=forgeo.results[0].geometry.lat.toString() + "," + forgeo.results[0].geometry.lng.toString()
+     console.log(forgeo.results[0].geometry)
     let serve=await new service({name:user_details.fullname,
       email:user_details.email,
       phone:user_details.phoneno,
@@ -215,7 +218,8 @@ app.post("/reqsermanually",async (req,res)=>{
       suburb:req.body.hcity,
       fullfilled:false,
       service:req.body.hservice,
-      district:req.body.hdistrict})
+      district:req.body.hdistrict,
+      coordinates:coords})
       await serve.save()
       console.log("service created")
       let requestMailOptions = {
@@ -387,27 +391,35 @@ findNearbyPlaces();
 app.post("/verify-otp",async (req,res)=>{
   let otp=parseInt(req.body.otp)
   let email=req.body.otpemail
+  let verify_info={email_matched:false,otp_matched:false}
   for(let i=0;i<Object.keys(otp_info).length;i++){
     if(email===Object.keys(otp_info)[i]){
-      verify_status.email_matched=true
+      verify_info.email_matched=true
       if(otp===otp_info[`${email}`]){
-        verify_status.otp_matched=true
+        verify_status.push(email)
+        verify_info.otp_matched=true
       }
     }
   }
-  res.send(verify_status)
+  res.send(verify_info)
 })
 app.post("/update-password",async (req,res)=>{
-  let new_password=req.body.otppassword
+  let new_password=req.body.password
   let email_for_otp=req.body.otpemail
+  let verify_done=false
   let update_stat={updatedone:false}
-  if(verify_status.email_matched && verify_status.otp_matched){
+  verify_status.forEach(val=>{
+    if(val===email_for_otp)
+    verify_done=true
+  })
+  if(verify_done){
     let updatepass=await registered_users.findOneAndUpdate({email:email_for_otp},{password:new_password})
     if(updatepass!==null)
     update_stat.updatedone=true
-    unverify_otp(verify_status)
+    console.log(verify_status)
+    unverify_otp(verify_status,verify_status.indexOf(email_for_otp))
+    console.log(verify_status)
     empty_email_otp(otp_info,email_for_otp)
-    console.log(otp_info)
   }
   res.send(update_stat)
 })
